@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MMAP on </title>
+    <link>https://mmapudenar.github.io/docs/</link>
+    <description>Recent content in MMAP on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Tue, 06 Oct 2020 08:48:23 +0000</lastBuildDate><atom:link href="https://mmapudenar.github.io/docs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Sistema MMAP</title>
+      <link>https://mmapudenar.github.io/docs/intro/mmap/</link>
+      <pubDate>Mon, 16 Nov 2020 13:59:39 +0100</pubDate>
+      
+      <guid>https://mmapudenar.github.io/docs/intro/mmap/</guid>
+      <description>El proyecto es
+Objetivos Funcionamiento de Plataforma Web--</description>
+    </item>
+    
+    <item>
+      <title>Equipo de Trabajo</title>
+      <link>https://mmapudenar.github.io/docs/intro/equipo/</link>
+      <pubDate>Tue, 06 Oct 2020 08:48:57 +0000</pubDate>
+      
+      <guid>https://mmapudenar.github.io/docs/intro/equipo/</guid>
+      <description>Joseph Santiago Portilla Martínez Estudiante de Ingeniería Electrónica
+Universidad de Nariño, Pasto.
+E-mail | LinkedIn | Github
+Karen Stefania Mirama Eraso Estudiante de Ingeniería Electrónica
+Universidad de Nariño
+E-mail
+Msc. Darío Fernando Fajardo Fajardo Docente departamento de Electrónica
+Universidad de Nariño
+E-mail</description>
+    </item>
+    
+    <item>
+      <title>Contenido de Sección</title>
+      <link>https://mmapudenar.github.io/docs/modelo/indice/</link>
+      <pubDate>Tue, 06 Oct 2020 08:49:31 +0000</pubDate>
+      
+      <guid>https://mmapudenar.github.io/docs/modelo/indice/</guid>
+      <description>En esta sección se encuentran la documentación y resultados de
+ Preprocesamiento de Datos Correlación entre bases de Datos Site-adaptation Modelo de Predicción de Heladas  </description>
+    </item>
+    
+    <item>
+      <title>Preprocesamiento de Datos</title>
+      <link>https://mmapudenar.github.io/docs/modelo/filt/</link>
+      <pubDate>Tue, 06 Oct 2020 08:49:31 +0000</pubDate>
+      
+      <guid>https://mmapudenar.github.io/docs/modelo/filt/</guid>
+      <description>Temperatura aAHumedad Relativa aVelocidad del Viento aRadiación Solar aReferencias </description>
+    </item>
+    
+    <item>
+      <title>Correlación entre bases de datos</title>
+      <link>https://mmapudenar.github.io/docs/modelo/correlacion/</link>
+      <pubDate>Tue, 06 Oct 2020 08:49:31 +0000</pubDate>
+      
+      <guid>https://mmapudenar.github.io/docs/modelo/correlacion/</guid>
+      <description>Referencias </description>
+    </item>
+    
+    <item>
+      <title>Site-adaptation</title>
+      <link>https://mmapudenar.github.io/docs/modelo/site-adaptation/</link>
+      <pubDate>Thu, 12 Nov 2020 13:26:54 +0100</pubDate>
+      
+      <guid>https://mmapudenar.github.io/docs/modelo/site-adaptation/</guid>
+      <description>Referencias </description>
+    </item>
+    
+    <item>
+      <title>Modelo de Predicción</title>
+      <link>https://mmapudenar.github.io/docs/modelo/modelo/</link>
+      <pubDate>Thu, 12 Nov 2020 15:22:20 +0100</pubDate>
+      
+      <guid>https://mmapudenar.github.io/docs/modelo/modelo/</guid>
+      <description>Problems Referencias </description>
+    </item>
+    
+    <item>
+      <title>Contenido de Sección Plataforma Web</title>
+      <link>https://mmapudenar.github.io/docs/plat/indice/</link>
+      <pubDate>Tue, 06 Oct 2020 08:49:31 +0000</pubDate>
+      
+      <guid>https://mmapudenar.github.io/docs/plat/indice/</guid>
+      <description>En esta sección se encuentran la documentación y resultados de
+ Distribución de Datos Almacenamiento de datos Visualización de Datos Diagrama de Funcionamiento de la Plataforma  </description>
+    </item>
+    
+    <item>
+      <title>Distribución de Datos</title>
+      <link>https://mmapudenar.github.io/docs/plat/nodered/</link>
+      <pubDate>Tue, 06 Oct 2020 08:49:31 +0000</pubDate>
+      
+      <guid>https://mmapudenar.github.io/docs/plat/nodered/</guid>
+      <description>a </description>
+    </item>
+    
+    <item>
+      <title>Almacenamiento de Datos</title>
+      <link>https://mmapudenar.github.io/docs/plat/influx/</link>
+      <pubDate>Tue, 06 Oct 2020 08:49:31 +0000</pubDate>
+      
+      <guid>https://mmapudenar.github.io/docs/plat/influx/</guid>
+      <description>a </description>
+    </item>
+    
+  </channel>
+</rss>

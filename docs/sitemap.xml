@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+    <url>
+      <loc>/docs/intro/mmap/</loc>
+      <lastmod>2020-11-16T13:59:39+01:00</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+    </url>
+    
+    <url>
+      <loc>/docs/intro/equipo/</loc>
+      <lastmod>2020-10-06T08:48:57+00:00</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+    </url>
+    
+    <url>
+      <loc>/docs/modelo/indice/</loc>
+      <lastmod>2020-10-06T08:49:31+00:00</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+    </url>
+    
+    <url>
+      <loc>/docs/modelo/filt/</loc>
+      <lastmod>2020-10-06T08:49:31+00:00</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+    </url>
+    
+    <url>
+      <loc>/docs/modelo/correlacion/</loc>
+      <lastmod>2020-10-06T08:49:31+00:00</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+    </url>
+    
+    <url>
+      <loc>/docs/modelo/site-adaptation/</loc>
+      <lastmod>2020-11-12T13:26:54+01:00</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+    </url>
+    
+    <url>
+      <loc>/docs/modelo/modelo/</loc>
+      <lastmod>2020-11-12T15:22:20+01:00</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+    </url>
+    
+    <url>
+      <loc>/docs/plat/indice/</loc>
+      <lastmod>2020-10-06T08:49:31+00:00</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+    </url>
+    
+    <url>
+      <loc>/docs/plat/nodered/</loc>
+      <lastmod>2020-10-06T08:49:31+00:00</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+    </url>
+    
+    <url>
+      <loc>/docs/plat/influx/</loc>
+      <lastmod>2020-10-06T08:49:31+00:00</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+    </url>
+    
+    <url>
+      <loc>/docs/plat/grafana/</loc>
+      <lastmod>2020-10-06T08:49:31+00:00</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+    </url>
+    
+    <url>
+      <loc>/docs/plat/bloques/</loc>
+      <lastmod>2020-10-06T08:49:31+00:00</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+    </url>
+    
+    <url>
+      <loc>/docs/ema/indice/</loc>
+      <lastmod>2020-10-06T08:49:31+00:00</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+    </url>
+    
+    <url>
+      <loc>/docs/ema/hardware/</loc>
+      <lastmod>2020-10-06T08:49:31+00:00</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+    </url>
+    
+    <url>
+      <loc>/docs/ema/micro/</loc>
+      <lastmod>2020-10-06T08:49:31+00:00</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+    </url>
+    
+    <url>
+      <loc>/docs/ema/piranometro/</loc>
+      <lastmod>2020-10-06T08:49:31+00:00</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+    </url>
+    
+    <url>
+      <loc>/docs/ema/sht/</loc>
+      <lastmod>2020-10-06T08:49:31+00:00</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+    </url>
+    
+    <url>
+      <loc>/docs/ema/anemometro/</loc>
+      <lastmod>2020-10-06T08:49:31+00:00</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+    </url>
+    
+    <url>
+      <loc>/docs/ema/circuito/</loc>
+      <lastmod>2020-10-06T08:49:31+00:00</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+    </url>
+    
+    <url>
+      <loc>/docs/ema/estructura/</loc>
+      <lastmod>2020-10-06T08:49:31+00:00</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+    </url>
+    </urlset>

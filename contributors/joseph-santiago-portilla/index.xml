@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Joseph Santiago Portilla on </title>
+    <link>https://mmapudenar.github.io/contributors/joseph-santiago-portilla/</link>
+    <description>Recent content in Joseph Santiago Portilla on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Wed, 04 Nov 2020 09:19:42 +0100</lastBuildDate><atom:link href="https://mmapudenar.github.io/contributors/joseph-santiago-portilla/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hola Mundo</title>
+      <link>https://mmapudenar.github.io/blog/hola-mundo/</link>
+      <pubDate>Wed, 04 Nov 2020 09:19:42 +0100</pubDate>
+      
+      <guid>https://mmapudenar.github.io/blog/hola-mundo/</guid>
+      <description>Hola </description>
+    </item>
+    
+  </channel>
+</rss>
