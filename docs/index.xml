@@ -50,7 +50,8 @@ E-mail</description>
       <pubDate>Tue, 06 Oct 2020 08:49:31 +0000</pubDate>
       
       <guid>https://mmapudenar.github.io/docs/modelo/filt/</guid>
-      <description>Temperatura aAHumedad Relativa aVelocidad del Viento aRadiación Solar aReferencias </description>
+      <description>Temperatura Datos sin filtrar La serie de tiempo para la temperatura in situ presenta datos erróneos desde el año 2013 en adelante como se observa en la Figura 1. Se encuentran máximos de aproximadamente 50°C y mínimos de -40°C, físicamente imposibles de darse en la locación escogida para la investigación. Además, entre 2014 y 2015 se presenta información de 0°C consecutivamente durante días e incluso meses.
+Estos errores se pueden deber a errores de instrumentación e influyen bastante a la distribución estadística de la información que se gráfica mediante diagrama de caja e histograma en la Figura 2, donde $\sigma$ es la desviación estandar, $\mu$ la media y $n$ el número de datos.</description>
     </item>
     
     <item>
@@ -59,7 +60,9 @@ E-mail</description>
       <pubDate>Tue, 06 Oct 2020 08:49:31 +0000</pubDate>
       
       <guid>https://mmapudenar.github.io/docs/modelo/correlacion/</guid>
-      <description>Referencias </description>
+      <description>En la siguiente sección se presenta la correlación entre cada una de las bases de datos satelitales y la información in situ correspondiente a las variables de interés seleccionadas.
+Radiación Solar Para la variable de radiación solar la base de datos satelital que tiene el valor de correlación más grande con las mediciones in situ es SOLCAST con $0.90$. NSRDB también cuenta con un valor alto de $0.85$.
+Por otra parte ERA5 tiene una correlación media, acorde a su documentación se debe tener cuidado al comparar el dato con mediciones in situ ya que la variable equivalente a la medición de un piranómetro es modelada como un punto concreto del espacio y el tiempo, en lugar de representar el promedio de una cuadricula del modelo y un intervalo de tiempo correspondiente.</description>
     </item>
     
     <item>
@@ -68,7 +71,7 @@ E-mail</description>
       <pubDate>Thu, 12 Nov 2020 13:26:54 +0100</pubDate>
       
       <guid>https://mmapudenar.github.io/docs/modelo/site-adaptation/</guid>
-      <description>Referencias </description>
+      <description>Radiación Solar Velocidad del Viento Humedad Relativa Temperatura </description>
     </item>
     
     <item>
@@ -105,7 +108,8 @@ E-mail</description>
       <pubDate>Tue, 06 Oct 2020 08:49:31 +0000</pubDate>
       
       <guid>https://mmapudenar.github.io/docs/plat/influx/</guid>
-      <description>a </description>
+      <description>Los datos meteorológicos son un conjunto de observaciones obtenidas mediante mediciones periódicas a lo largo del tiempo, teniendo esto en cuenta la mejor opción para el almacenamiento de la información es una base de datos de series de tiempo (Time Series Data Base, TSDB), ya que son sistemas de software que están optimizados para manejar datos y matrices de números indexados por tiempo [].
+InfluxDB InfluxDB es un sistema de gestión de bases de datos de series temporales, de código abierto y gratuito que se encarga del almacenamiento, indexación y consulta de información, especializado en métricas de servidores y monitoreo de dispositivos IoT [].</description>
     </item>
     
   </channel>

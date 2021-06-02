@@ -15,18 +15,18 @@
   <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <title>Almacenamiento de Datos | MMAP</title>
-<meta name="description" content="Answers to frequently asked questions.">
+<meta name="description" content="Base de Datos de Series de Tiempo.">
 <link rel="canonical" href="https://mmapudenar.github.io/docs/plat/influx/">
 <meta name="twitter:card" content="summary_large_image">
       <meta name="twitter:image" content="/doks.png">
     <meta name="twitter:title" content="Almacenamiento de Datos">
-<meta name="twitter:description" content="Answers to frequently asked questions.">
+<meta name="twitter:description" content="Base de Datos de Series de Tiempo.">
 
 <meta name="twitter:site" content="@henkverlinde">
 <meta name="twitter:creator" content="@henkverlinde">
 
 <meta property="og:title" content="Almacenamiento de Datos">
-<meta property="og:description" content="Answers to frequently asked questions.">
+<meta property="og:description" content="Base de Datos de Series de Tiempo.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="/docs/plat/influx/">
 
@@ -144,9 +144,9 @@
     <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/indice/">Contenido de sección E.M.A.</a></li>
     <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/hardware/">Hardware</a></li>
     <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/micro/">Microcontrolador</a></li>
-    <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/piranometro/">Piranómetro</a></li>
+    <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/piranometro/">Sensor de Radiación Solar</a></li>
     <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/sht/">Sensor de Temperatura y Humedad</a></li>
-    <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/anemometro/">Anemómetro</a></li>
+    <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/anemometro/">Sensor de Dirección y Velocidad del Viento</a></li>
     <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/circuito/">Circuito Electrónico</a></li>
     <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/estructura/">Estructura</a></li>
     </ul>
@@ -158,7 +158,13 @@
     <h3>On this page</h3>
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#a">a</a></li>
+    <li><a href="#influxdb">InfluxDB</a>
+      <ul>
+        <li><a href="#conceptos-y-elementos-de-una-tsdb">Conceptos y elementos de una TSDB</a></li>
+      </ul>
+    </li>
+    <li><a href="#estructura-de-datos-propuesta">Estructura de datos propuesta</a></li>
+    <li><a href="#descarga-de-datos">Descarga de Datos</a></li>
   </ul>
 </nav>
   </div>
@@ -167,8 +173,33 @@
 		<main class="docs-content col-lg-11 col-xl-9">
 		
 			<h1>Almacenamiento de Datos</h1>
-			<p class="lead">Answers to frequently asked questions.</p>
-			<h2 id="a">a<a href="#a" class="anchor" aria-hidden="true">#</a> </h2>
+			<p class="lead">Base de Datos de Series de Tiempo.</p>
+			<p>Los datos meteorológicos son un conjunto de observaciones obtenidas mediante mediciones periódicas a lo largo del tiempo, teniendo esto en cuenta la mejor opción para el almacenamiento de la información es una base de datos de series de tiempo (<em>Time Series Data Base</em>, TSDB), ya que son sistemas de software que están optimizados para manejar datos y matrices de números indexados por tiempo [].</p>
+<h2 id="influxdb">InfluxDB<a href="#influxdb" class="anchor" aria-hidden="true">#</a> </h2>
+<p>InfluxDB es un sistema de gestión de bases de datos de series temporales, de código abierto y gratuito que se encarga del almacenamiento, indexación y consulta de información, especializado en métricas de servidores y monitoreo de dispositivos IoT []. Al ser capaz de manejar gran cantidad de inserciones y búsquedas se puede obtener información de los diferentes sensores en períodos de tiempo específicos y a partir de éstos realizar análisis en tiempo real.</p>
+<p>InfluxDB integra la herramienta &lsquo;Chronograf&rsquo;, que ayuda a gestionar las bases de datos desde una interfaz gráfica administrativa en lugar de hacerlo mediante comandos por la terminal de la consola. Permite crear o eliminar bases de datos y políticas de retención, ver las consultas que se están ejecutando y evitar que las consultas ineficientes sobrecarguen el sistema, además de poder crear, eliminar y asignar permisos a los usuarios [].</p>
+<h3 id="conceptos-y-elementos-de-una-tsdb">Conceptos y elementos de una TSDB<a href="#conceptos-y-elementos-de-una-tsdb" class="anchor" aria-hidden="true">#</a> </h3>
+<h4 id="time">Time<a href="#time" class="anchor" aria-hidden="true">#</a> </h4>
+<p>Todos los datos en InfluxDB tienen esa columna. el tiempo almacena marcas de tiempo que muestran la fecha y la hora en RFC3339 UTC, asociada con datos particulares.</p>
+<h4 id="fields">Fields<a href="#fields" class="anchor" aria-hidden="true">#</a> </h4>
+<p>Los campos son una pieza necesaria de la estructura de datos de InfluxDB, no se puede tener datos en InfluxDB sin fields. Los Fields están compuestos por <em>field keys</em> y <em>field values</em>. Una Field Key es un string que almacena el metadato del campo, mientras que los Field Values son los datos del campo; pueden ser string, float, int o bool y siempre se asocian a una marca de tiempo.</p>
+<p>Debido a que los campos no están indexados las queries (consultas) que utilizan Fields como filtros deben escanear todos los valores que coincidan con las otras condiciones de la consulta. Como resultado, esas consultas no tienen un buen rendimiento respecto a las consultas con tags. En general, los campos no deben contener metadatos comúnmente solicitados.</p>
+<h4 id="tags">Tags<a href="#tags" class="anchor" aria-hidden="true">#</a> </h4>
+<p>Las etiquetas registran metadatos y se almacenan como strings. Las etiquetas son opcionales. No es necesario tener etiquetas en la estructura de datos, pero generalmente es una buena idea hacer uso de ellas porque, a diferencia de los campos, las etiquetas están indexadas. Esto significa que las consultas sobre las etiquetas son más rápidas y son ideales para almacenar metadatos de búsqueda común.</p>
+<p>Se componen de <em>Tag Keys</em> y <em>Tag Values</em>. Una Tag Key es un string que almacena el titulo del metadato. Una Tag value es un string que almacena la información del metadato.</p>
+<h4 id="measurement">Measurement<a href="#measurement" class="anchor" aria-hidden="true">#</a> </h4>
+<p>Es un contenedor para los tags, fields y time. El nombre que se le da a &ldquo;measurement&rdquo; es una descripción de la información que esta almacenada en sus campos asociados. Es similar a una tabla en SQL.</p>
+<h4 id="retention-policy">Retention policy<a href="#retention-policy" class="anchor" aria-hidden="true">#</a> </h4>
+<p>Una política de retención describe el tiempo que InfluxDB guarda los datos (Duración) y cuántas copias de estos datos se almacenan en el cluster (Replicación). InfluxDB crea automáticamente la política de retención <em>autogen:</em> tiene una duración infinita y un factor de réplica establecido en uno.</p>
+<h4 id="bucket">Bucket<a href="#bucket" class="anchor" aria-hidden="true">#</a> </h4>
+<p>Un bucket es el conjunto de un measurement con se respectiva retention policy.</p>
+<h2 id="estructura-de-datos-propuesta">Estructura de datos propuesta<a href="#estructura-de-datos-propuesta" class="anchor" aria-hidden="true">#</a> </h2>
+<p>Bucket: MMAPdb
+Measurement: EMA_Torobajo
+Time Variable Sensor Ubicación Municipio Valor
+28-05-2021 08:22:13 Temperatura SHT30 Udenar Torobajo Pasto  20</p>
+<h2 id="descarga-de-datos">Descarga de Datos<a href="#descarga-de-datos" class="anchor" aria-hidden="true">#</a> </h2>
+<p>En archivo .csv</p>
 
 			<div class="docs-navigation d-flex justify-content-between">
 	
@@ -216,7 +247,7 @@
   <script src="https://mmapudenar.github.io/js/vendor/katex/dist/katex.min.a16c5ca92b3cba474a697a3146ca2ed1486305bf2f452dc16a5c8701fcc524d72779ba521ef7f61212fc43a2eedb2a94598e948b0c7f2a510f6ac88e7edafdd0.js" integrity="sha512-oWxcqSs8ukdKaXoxRsou0UhjBb8vRS3BalyHAfzFJNcnebpSHvf2EhL8Q6Lu2yqUWY6Uiwx/KlEPasiOftr90A==" crossorigin="anonymous" defer></script>
     <script src="https://mmapudenar.github.io/js/vendor/katex/dist/contrib/auto-render.min.b367aaf20f22663f79cc66de5558d99f3392981b198f21229e9f6acedb41defe9d682a88b1a1eefddf271fb7260bc5b58c55c0a24779e5358b3c51392dd34d56.js" integrity="sha512-s2eq8g8iZj95zGbeVVjZnzOSmBsZjyEinp9qzttB3v6daCqIsaHu/d8nH7cmC8W1jFXAokd55TWLPFE5LdNNVg==" crossorigin="anonymous" defer></script>
   <script src="https://mmapudenar.github.io/main.min.7ebe89441904dda7661149e63fbe43501464a92ff46162cca013d200684516a1deb1dbc83f0780f78a4ab78f74be173e33f174a8518d1eb2f692b09564723789.js" integrity="sha512-fr6JRBkE3admEUnmP75DUBRkqS/0YWLMoBPSAGhFFqHesdvIPweA94pKt490vhc&#43;M/F0qFGNHrL2krCVZHI3iQ==" crossorigin="anonymous" defer></script>
-  <script src="https://mmapudenar.github.io/index.min.548d8be0d2092ce6169131339337b4b21785d95f3ce9dc1a1328711a08f8d9207e88c2dbe2c167e67a091a91bb766d1ae38c6395180dcb08e5ddc7b9ad93f02b.js" integrity="sha512-VI2L4NIJLOYWkTEzkze0sheF2V886dwaEyhxGgj42SB&#43;iMLb4sFn5noJGpG7dm0a44xjlRgNywjl3ce5rZPwKw==" crossorigin="anonymous" defer></script>
+  <script src="https://mmapudenar.github.io/index.min.81fe8a1505eca8ea5194566e87f32995c6cb41550f956a586f794ed639be8c6a7e76e69d3b0f018ff37b74de2d320c5e6b3dc052fc2c1400c54b28afec7e8364.js" integrity="sha512-gf6KFQXsqOpRlFZuh/MplcbLQVUPlWpYb3lO1jm&#43;jGp&#43;duadOw8Bj/N7dN4tMgxeaz3AUvwsFADFSyiv7H6DZA==" crossorigin="anonymous" defer></script>
   
   </body>
 </html>

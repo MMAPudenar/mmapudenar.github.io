@@ -15,18 +15,18 @@
   <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <title>Correlación entre bases de datos | MMAP</title>
-<meta name="description" content="Answers to frequently asked questions.">
+<meta name="description" content="Correlación entre bases de datos in situ y satelitales.">
 <link rel="canonical" href="https://mmapudenar.github.io/docs/modelo/correlacion/">
 <meta name="twitter:card" content="summary_large_image">
       <meta name="twitter:image" content="/doks.png">
     <meta name="twitter:title" content="Correlación entre bases de datos">
-<meta name="twitter:description" content="Answers to frequently asked questions.">
+<meta name="twitter:description" content="Correlación entre bases de datos in situ y satelitales.">
 
 <meta name="twitter:site" content="@henkverlinde">
 <meta name="twitter:creator" content="@henkverlinde">
 
 <meta property="og:title" content="Correlación entre bases de datos">
-<meta property="og:description" content="Answers to frequently asked questions.">
+<meta property="og:description" content="Correlación entre bases de datos in situ y satelitales.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="/docs/modelo/correlacion/">
 
@@ -144,9 +144,9 @@
     <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/indice/">Contenido de sección E.M.A.</a></li>
     <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/hardware/">Hardware</a></li>
     <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/micro/">Microcontrolador</a></li>
-    <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/piranometro/">Piranómetro</a></li>
+    <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/piranometro/">Sensor de Radiación Solar</a></li>
     <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/sht/">Sensor de Temperatura y Humedad</a></li>
-    <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/anemometro/">Anemómetro</a></li>
+    <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/anemometro/">Sensor de Dirección y Velocidad del Viento</a></li>
     <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/circuito/">Circuito Electrónico</a></li>
     <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/estructura/">Estructura</a></li>
     </ul>
@@ -158,7 +158,10 @@
     <h3>On this page</h3>
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#referencias">Referencias</a></li>
+    <li><a href="#radiación-solar">Radiación Solar</a></li>
+    <li><a href="#velocidad-del-viento">Velocidad del Viento</a></li>
+    <li><a href="#humedad-relativa">Humedad Relativa</a></li>
+    <li><a href="#temperatura">Temperatura</a></li>
   </ul>
 </nav>
   </div>
@@ -167,8 +170,57 @@
 		<main class="docs-content col-lg-11 col-xl-9">
 		
 			<h1>Correlación entre bases de datos</h1>
-			<p class="lead">Answers to frequently asked questions.</p>
-			<h2 id="referencias">Referencias<a href="#referencias" class="anchor" aria-hidden="true">#</a> </h2>
+			<p class="lead">Correlación entre bases de datos in situ y satelitales.</p>
+			<p>En la siguiente sección se presenta la correlación entre cada una de las bases de datos satelitales y la información in situ correspondiente a las variables de interés seleccionadas.</p>
+<h2 id="radiación-solar">Radiación Solar<a href="#radiación-solar" class="anchor" aria-hidden="true">#</a> </h2>
+<p>Para la variable de radiación solar la base de datos satelital que tiene el valor de correlación más grande con las mediciones in situ es <strong>SOLCAST</strong> con $0.90$. NSRDB también cuenta con un valor alto de $0.85$.</p>
+<p>Por otra parte ERA5 tiene una correlación media, acorde a su documentación se debe tener cuidado al comparar el dato con mediciones in situ ya que la variable equivalente a la medición de un piranómetro es modelada como un punto concreto del espacio y el tiempo, en lugar de representar el promedio de una cuadricula del modelo y un intervalo de tiempo correspondiente.</p>
+<p align="center">
+  <img alt="img-name" src="https://i.imgur.com/71B1pT5.jpg" width="500">
+  <br>
+    <em>Fig. 1 Mapa de calor de Correlación para la Radiación Solar entre bases de datos satelitales y mediciones in situ.</em>
+</p>
+<p align="center">
+  <img alt="img-name" src="https://i.imgur.com/mIY4131.jpg" width="700">
+  <br>
+    <em>Fig. 2 Diagramas de dispersión de Radiación Solar entre bases de datos satelitales y mediciones in situ.</em>
+</p>
+<h2 id="velocidad-del-viento">Velocidad del Viento<a href="#velocidad-del-viento" class="anchor" aria-hidden="true">#</a> </h2>
+<p>La correlación más alta con las mediciones in situ se da en la base de datos de <strong>NSRDB</strong> con un valor de $0.78$. Mientras que las otras bases de datos tienen un valor de correlación medio.</p>
+<p align="center">
+  <img alt="img-name" src="https://i.imgur.com/XFQ7KZm.jpg" width="500">
+  <br>
+    <em>Fig. 3 Mapa de calor de Correlación para la Velocidad del Viento entre bases de datos satelitales y mediciones in situ.</em>
+</p>
+<p align="center">
+  <img alt="img-name" src="https://i.imgur.com/qPXYung.jpg" width="700">
+  <br>
+    <em>Fig. 4 Diagramas de dispersión de Velocidad del Viento entre bases de datos satelitales y mediciones in situ.</em>
+</p>
+<h2 id="humedad-relativa">Humedad Relativa<a href="#humedad-relativa" class="anchor" aria-hidden="true">#</a> </h2>
+<p>En este caso la base de datos de <strong>ERA5-Land</strong> es la que presenta el mayor valor de $0.79$, mientras que NSRDB y SOLCAST tienen un valor de correlación medio.</p>
+<p align="center">
+  <img alt="img-name" src="https://i.imgur.com/jp7LMyX.jpg" width="500">
+  <br>
+    <em>Fig. 5 Mapa de calor de Correlación para la Humedad Relativa entre bases de datos satelitales y mediciones in situ.</em>
+</p>
+<p align="center">
+  <img alt="img-name" src="https://i.imgur.com/KrtzPqT.jpg" width="700">
+  <br>
+    <em>Fig. 6 Diagramas de dispersión de Humedad Relativa entre bases de datos satelitales y mediciones in situ.</em>
+</p>
+<h2 id="temperatura">Temperatura<a href="#temperatura" class="anchor" aria-hidden="true">#</a> </h2>
+<p>Al igual que con la Humedad Relativa <strong>ERA5-Land</strong> tiene la correlación más alta respecto a las demás bases de datos, con un valor de 0.86. Esto se da debido a su gran resolución y su enfoque de optimizar las medidas en tierra.</p>
+<p align="center">
+  <img alt="img-name" src="https://i.imgur.com/3v8DVyC.jpg" width="500">
+  <br>
+    <em>Fig. 7 Mapa de calor de Correlación para la Temperatura entre bases de datos satelitales y mediciones in situ.</em>
+</p>
+<p align="center">
+  <img alt="img-name" src="https://i.imgur.com/VpzOHr6.jpg" width="700">
+  <br>
+    <em>Fig. 8 Diagramas de dispersión de Temperatura entre bases de datos satelitales y mediciones in situ.</em>
+</p>
 
 			<div class="docs-navigation d-flex justify-content-between">
 	
@@ -216,7 +268,7 @@
   <script src="https://mmapudenar.github.io/js/vendor/katex/dist/katex.min.a16c5ca92b3cba474a697a3146ca2ed1486305bf2f452dc16a5c8701fcc524d72779ba521ef7f61212fc43a2eedb2a94598e948b0c7f2a510f6ac88e7edafdd0.js" integrity="sha512-oWxcqSs8ukdKaXoxRsou0UhjBb8vRS3BalyHAfzFJNcnebpSHvf2EhL8Q6Lu2yqUWY6Uiwx/KlEPasiOftr90A==" crossorigin="anonymous" defer></script>
     <script src="https://mmapudenar.github.io/js/vendor/katex/dist/contrib/auto-render.min.b367aaf20f22663f79cc66de5558d99f3392981b198f21229e9f6acedb41defe9d682a88b1a1eefddf271fb7260bc5b58c55c0a24779e5358b3c51392dd34d56.js" integrity="sha512-s2eq8g8iZj95zGbeVVjZnzOSmBsZjyEinp9qzttB3v6daCqIsaHu/d8nH7cmC8W1jFXAokd55TWLPFE5LdNNVg==" crossorigin="anonymous" defer></script>
   <script src="https://mmapudenar.github.io/main.min.7ebe89441904dda7661149e63fbe43501464a92ff46162cca013d200684516a1deb1dbc83f0780f78a4ab78f74be173e33f174a8518d1eb2f692b09564723789.js" integrity="sha512-fr6JRBkE3admEUnmP75DUBRkqS/0YWLMoBPSAGhFFqHesdvIPweA94pKt490vhc&#43;M/F0qFGNHrL2krCVZHI3iQ==" crossorigin="anonymous" defer></script>
-  <script src="https://mmapudenar.github.io/index.min.548d8be0d2092ce6169131339337b4b21785d95f3ce9dc1a1328711a08f8d9207e88c2dbe2c167e67a091a91bb766d1ae38c6395180dcb08e5ddc7b9ad93f02b.js" integrity="sha512-VI2L4NIJLOYWkTEzkze0sheF2V886dwaEyhxGgj42SB&#43;iMLb4sFn5noJGpG7dm0a44xjlRgNywjl3ce5rZPwKw==" crossorigin="anonymous" defer></script>
+  <script src="https://mmapudenar.github.io/index.min.81fe8a1505eca8ea5194566e87f32995c6cb41550f956a586f794ed639be8c6a7e76e69d3b0f018ff37b74de2d320c5e6b3dc052fc2c1400c54b28afec7e8364.js" integrity="sha512-gf6KFQXsqOpRlFZuh/MplcbLQVUPlWpYb3lO1jm&#43;jGp&#43;duadOw8Bj/N7dN4tMgxeaz3AUvwsFADFSyiv7H6DZA==" crossorigin="anonymous" defer></script>
   
   </body>
 </html>

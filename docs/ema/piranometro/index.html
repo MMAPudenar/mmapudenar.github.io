@@ -14,19 +14,19 @@
   <meta name="robots" content="index, follow">
   <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-  <title>Piranómetro | MMAP</title>
-<meta name="description" content="Sensor de Radiación Solar.">
+  <title>Sensor de Radiación Solar | MMAP</title>
+<meta name="description" content="Piranómetro.">
 <link rel="canonical" href="https://mmapudenar.github.io/docs/ema/piranometro/">
 <meta name="twitter:card" content="summary_large_image">
       <meta name="twitter:image" content="/doks.png">
-    <meta name="twitter:title" content="Piranómetro">
-<meta name="twitter:description" content="Sensor de Radiación Solar.">
+    <meta name="twitter:title" content="Sensor de Radiación Solar">
+<meta name="twitter:description" content="Piranómetro.">
 
 <meta name="twitter:site" content="@henkverlinde">
 <meta name="twitter:creator" content="@henkverlinde">
 
-<meta property="og:title" content="Piranómetro">
-<meta property="og:description" content="Sensor de Radiación Solar.">
+<meta property="og:title" content="Sensor de Radiación Solar">
+<meta property="og:description" content="Piranómetro.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="/docs/ema/piranometro/">
 
@@ -144,9 +144,9 @@
     <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/indice/">Contenido de sección E.M.A.</a></li>
     <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/hardware/">Hardware</a></li>
     <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/micro/">Microcontrolador</a></li>
-    <li><a class="docs-link active" href="https://mmapudenar.github.io/docs/ema/piranometro/">Piranómetro</a></li>
+    <li><a class="docs-link active" href="https://mmapudenar.github.io/docs/ema/piranometro/">Sensor de Radiación Solar</a></li>
     <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/sht/">Sensor de Temperatura y Humedad</a></li>
-    <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/anemometro/">Anemómetro</a></li>
+    <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/anemometro/">Sensor de Dirección y Velocidad del Viento</a></li>
     <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/circuito/">Circuito Electrónico</a></li>
     <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/estructura/">Estructura</a></li>
     </ul>
@@ -177,14 +177,14 @@
 		</nav>
 		<main class="docs-content col-lg-11 col-xl-9">
 		
-			<h1>Piranómetro</h1>
-			<p class="lead">Sensor de Radiación Solar.</p>
+			<h1>Sensor de Radiación Solar</h1>
+			<p class="lead">Piranómetro.</p>
 			<h2 id="apogee-sp-110">APOGEE SP-110<a href="#apogee-sp-110" class="anchor" aria-hidden="true">#</a> </h2>
 <p>Es un sensor analógico auto alimentado capaz de medir la radiación global solar total: una medida de la tasa de energía solar total entrante (tanto directa como difusa) en un plano horizontal en la superficie de la Tierra. Aproximadamente el 80% del total de la radiación de onda corta está dentro de su rango de medición.</p>
 <p align="center">
   <img alt="img-name" src="https://i.imgur.com/t3IP9DG.png" width="300">
   <br>
-    <em>Piranómetro Apogee SP-110</em>
+    <em>Fig. 1 Piranómetro Apogee SP-110</em>
 </p>
 <p>Se utiliza en una amplia variedad de clima. Sus aplicaciones típicas incluyen la medición de la radiación de onda corta en redes meteorológicas agrícolas, ecológicas e hidrológicas, además se utilizan para optimizar los sistemas fotovoltaicos <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>.</p>
 <h3 id="características-técnicas">Características técnicas<a href="#características-técnicas" class="anchor" aria-hidden="true">#</a> </h3>
@@ -226,7 +226,7 @@
 <p align="center">
   <img alt="img-name" src="https://i.imgur.com/a5KCfVC.png" width="400">
   <br>
-    <em>Orientación recomendada del Piranómetro</em>
+    <em>Fig. 2 Orientación recomendada del Piranómetro</em>
 </p>
 <p>Además de orientar el cable para que apunte hacia el polo más cercano, el sensor también <strong>debe montarse de manera que las obstrucciones no hagan sombra al sensor</strong>. Por ejemplo, la torre de la estación meteorológica u otros instrumentos.</p>
 <p><strong>Una vez montado, se debe retirar la tapa verde del sensor.</strong> La tapa verde puede utilizarse como cubierta protectora para el sensor cuando no esté en uso.</p>
@@ -235,7 +235,7 @@
 <p align="center">
   <img alt="img-name" src="https://i.imgur.com/yvjY86W.png" width="400">
   <br>
-    <em>Pines de salida del Piranómetro</em>
+    <em>Fig. 3 Pines de salida del Piranómetro</em>
 </p>
 <h3 id="acondicionamiento-de-señal">Acondicionamiento de señal<a href="#acondicionamiento-de-señal" class="anchor" aria-hidden="true">#</a> </h3>
 <p>Debido a que el sensor presenta una salida de voltaje muy pequeña del orden de los milivoltios, se requiere un etapa de amplificación para que el microcontrolador pueda leer esta tensión de forma adecuada.</p>
@@ -284,6 +284,10 @@
 <p>Multiplicar este factor de calibración por la señal de $mV$ medida para convertir la salida del sensor en radiación de onda corta en unidades de $W/m^2$</p>
 <p>Factor de calibración ( $5.0~W/m^{2}$  por $mV$) * Señal del sensor ($mV$) = Radiación ( $W/m^2$)</p>
 <h3 id="código-de-programación">Código de Programación<a href="#código-de-programación" class="anchor" aria-hidden="true">#</a> </h3>
+<p>Teniendo en cuenta el Datasheet del piranometro <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> se desarrolla una biblioteca que permite obtener la lectura de la radiación solar.</p>
+<p>La biblioteca esta disponible en <a href="https://github.com/MMAPudenar/SP110">GitHub</a>. Se compone de un archivo de cabecera <code>sp110.hpp</code> y un archivo de implementación <code>sp110.cpp</code> donde se encuentran las operaciones y comandos necesarios para la conversión del valor analógico en un dato de radiación global.</p>
+<p>A continuación se presenta un código de ejemplo para la medición con el piranómetro SP-110.</p>
+<script src="https://gist.github.com/JoePortilla/b89892c1462bd63ed5dc71d4f4e4d496.js"></script>
 <h3 id="mantenimiento">Mantenimiento<a href="#mantenimiento" class="anchor" aria-hidden="true">#</a> </h3>
 <p>La humedad o los residuos en el difusor son una causa común de las bajas lecturas. El sensor tiene un difusor abovedado y una carcasa para mejorar la autolimpieza de las precipitaciones, pero pueden acumularse materiales en el difusor (por ejemplo, polvo durante los períodos de escasas precipitaciones, depósitos de sal por evaporación del agua de mar o de riego por aspersión) y bloquear parcialmente el camino óptico.</p>
 <p><strong>La mejor manera de eliminar el polvo o los depósitos orgánicos es utilizando agua o limpiador de ventanas y un paño suave o un hisopo de algodón</strong>. Los depósitos de sal deben disolverse con vinagre y eliminarse con un paño suave o un bastoncillo de algodón. Nunca utilice un material abrasivo o un limpiador en el difusor.</p>
@@ -353,7 +357,7 @@
   <script src="https://mmapudenar.github.io/js/vendor/katex/dist/katex.min.a16c5ca92b3cba474a697a3146ca2ed1486305bf2f452dc16a5c8701fcc524d72779ba521ef7f61212fc43a2eedb2a94598e948b0c7f2a510f6ac88e7edafdd0.js" integrity="sha512-oWxcqSs8ukdKaXoxRsou0UhjBb8vRS3BalyHAfzFJNcnebpSHvf2EhL8Q6Lu2yqUWY6Uiwx/KlEPasiOftr90A==" crossorigin="anonymous" defer></script>
     <script src="https://mmapudenar.github.io/js/vendor/katex/dist/contrib/auto-render.min.b367aaf20f22663f79cc66de5558d99f3392981b198f21229e9f6acedb41defe9d682a88b1a1eefddf271fb7260bc5b58c55c0a24779e5358b3c51392dd34d56.js" integrity="sha512-s2eq8g8iZj95zGbeVVjZnzOSmBsZjyEinp9qzttB3v6daCqIsaHu/d8nH7cmC8W1jFXAokd55TWLPFE5LdNNVg==" crossorigin="anonymous" defer></script>
   <script src="https://mmapudenar.github.io/main.min.7ebe89441904dda7661149e63fbe43501464a92ff46162cca013d200684516a1deb1dbc83f0780f78a4ab78f74be173e33f174a8518d1eb2f692b09564723789.js" integrity="sha512-fr6JRBkE3admEUnmP75DUBRkqS/0YWLMoBPSAGhFFqHesdvIPweA94pKt490vhc&#43;M/F0qFGNHrL2krCVZHI3iQ==" crossorigin="anonymous" defer></script>
-  <script src="https://mmapudenar.github.io/index.min.548d8be0d2092ce6169131339337b4b21785d95f3ce9dc1a1328711a08f8d9207e88c2dbe2c167e67a091a91bb766d1ae38c6395180dcb08e5ddc7b9ad93f02b.js" integrity="sha512-VI2L4NIJLOYWkTEzkze0sheF2V886dwaEyhxGgj42SB&#43;iMLb4sFn5noJGpG7dm0a44xjlRgNywjl3ce5rZPwKw==" crossorigin="anonymous" defer></script>
+  <script src="https://mmapudenar.github.io/index.min.81fe8a1505eca8ea5194566e87f32995c6cb41550f956a586f794ed639be8c6a7e76e69d3b0f018ff37b74de2d320c5e6b3dc052fc2c1400c54b28afec7e8364.js" integrity="sha512-gf6KFQXsqOpRlFZuh/MplcbLQVUPlWpYb3lO1jm&#43;jGp&#43;duadOw8Bj/N7dN4tMgxeaz3AUvwsFADFSyiv7H6DZA==" crossorigin="anonymous" defer></script>
   
   </body>
 </html>

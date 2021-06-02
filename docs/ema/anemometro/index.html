@@ -14,19 +14,19 @@
   <meta name="robots" content="index, follow">
   <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-  <title>Anemómetro | MMAP</title>
-<meta name="description" content="Sensor de Dirección y Velocidad del Viento.">
+  <title>Sensor de Dirección y Velocidad del Viento | MMAP</title>
+<meta name="description" content="Anemómetro.">
 <link rel="canonical" href="https://mmapudenar.github.io/docs/ema/anemometro/">
 <meta name="twitter:card" content="summary_large_image">
       <meta name="twitter:image" content="/doks.png">
-    <meta name="twitter:title" content="Anemómetro">
-<meta name="twitter:description" content="Sensor de Dirección y Velocidad del Viento.">
+    <meta name="twitter:title" content="Sensor de Dirección y Velocidad del Viento">
+<meta name="twitter:description" content="Anemómetro.">
 
 <meta name="twitter:site" content="@henkverlinde">
 <meta name="twitter:creator" content="@henkverlinde">
 
-<meta property="og:title" content="Anemómetro">
-<meta property="og:description" content="Sensor de Dirección y Velocidad del Viento.">
+<meta property="og:title" content="Sensor de Dirección y Velocidad del Viento">
+<meta property="og:description" content="Anemómetro.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="/docs/ema/anemometro/">
 
@@ -144,9 +144,9 @@
     <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/indice/">Contenido de sección E.M.A.</a></li>
     <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/hardware/">Hardware</a></li>
     <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/micro/">Microcontrolador</a></li>
-    <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/piranometro/">Piranómetro</a></li>
+    <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/piranometro/">Sensor de Radiación Solar</a></li>
     <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/sht/">Sensor de Temperatura y Humedad</a></li>
-    <li><a class="docs-link active" href="https://mmapudenar.github.io/docs/ema/anemometro/">Anemómetro</a></li>
+    <li><a class="docs-link active" href="https://mmapudenar.github.io/docs/ema/anemometro/">Sensor de Dirección y Velocidad del Viento</a></li>
     <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/circuito/">Circuito Electrónico</a></li>
     <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/estructura/">Estructura</a></li>
     </ul>
@@ -158,13 +158,14 @@
     <h3>On this page</h3>
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#anemómetro-davis">Anemómetro DAVIS</a>
+    <li><a href="#anemómetro-davis-6410">Anemómetro DAVIS 6410</a>
       <ul>
         <li><a href="#características-técnicas">Características técnicas</a></li>
         <li><a href="#montaje">Montaje</a></li>
         <li><a href="#conexión">Conexión</a></li>
         <li><a href="#medición-dirección-del-viento">Medición Dirección del Viento</a></li>
         <li><a href="#medición-velocidad-del-viento">Medición Velocidad del Viento</a></li>
+        <li><a href="#código-de-programación">Código de Programación</a></li>
       </ul>
     </li>
     <li><a href="#referencias">Referencias</a></li>
@@ -175,10 +176,10 @@
 		</nav>
 		<main class="docs-content col-lg-11 col-xl-9">
 		
-			<h1>Anemómetro</h1>
-			<p class="lead">Sensor de Dirección y Velocidad del Viento.</p>
-			<h2 id="anemómetro-davis">Anemómetro DAVIS<a href="#anemómetro-davis" class="anchor" aria-hidden="true">#</a> </h2>
-<p>El anemómetro Davis está diseñado para medir tanto la velocidad como la dirección del viento. El sensor de velocidad del viento utiliza un interruptor de láminas magnético que se activa una vez por cada revolución de las copas de viento. La dirección del viento se mide mediante un potenciómetro.</p>
+			<h1>Sensor de Dirección y Velocidad del Viento</h1>
+			<p class="lead">Anemómetro.</p>
+			<h2 id="anemómetro-davis-6410">Anemómetro DAVIS 6410<a href="#anemómetro-davis-6410" class="anchor" aria-hidden="true">#</a> </h2>
+<p>El anemómetro Davis 6410 está diseñado para medir tanto la velocidad como la dirección del viento. El sensor de velocidad del viento utiliza un interruptor de láminas magnético que se activa una vez por cada revolución de las copas de viento. La dirección del viento se mide mediante un potenciómetro.</p>
 <h3 id="características-técnicas">Características técnicas<a href="#características-técnicas" class="anchor" aria-hidden="true">#</a> </h3>
 <p>Las especificaciones del anemómetro se dan en la siguiente Tabla</p>
 <table>
@@ -213,38 +214,35 @@
 <p align="center">
   <img alt="img-name" src="https://i.imgur.com/iLHoG4H.png" width="450">
   <br>
-    <em>Conexión del Anemómetro</em>
+    <em>Fig. 1 Conexión del Anemómetro</em>
 </p>
-<ul>
-<li>El circuito de <strong>velocidad del viento</strong> se conecta a un <strong>pin digital</strong>.</li>
-<li>El circuito de <strong>dirección del viento</strong> se conecta a un <strong>pin analógico</strong>.</li>
-</ul>
+<h4 id="circuito-interno">Circuito interno<a href="#circuito-interno" class="anchor" aria-hidden="true">#</a> </h4>
+<p>En la Figura 2 se diagrama el circuito interno del anemómetro. La veleta tiene un potenciómetro lineal de 20k conectado, del cual sale una medida analógica. Por su parte las copas de viento tienen un <em>reed-switch</em> o interruptor magnético de láminas montado en su interior cerca del eje. Este interruptor se activa una vez por cada revolución de las copas.</p>
+<p align="center">
+  <img alt="img-name" src="https://i.imgur.com/qYXARcT.jpg" width="450">
+  <br>
+    <em>Fig. 2 Circuito interno del Anemómetro</em>
+</p>
 <h3 id="medición-dirección-del-viento">Medición Dirección del Viento<a href="#medición-dirección-del-viento" class="anchor" aria-hidden="true">#</a> </h3>
-<p>La veleta tiene un potenciómetro lineal de 20k conectado, del cual sale una medida analógica.</p>
-<p>El ESP32 tiene un ADC de 12 bits por lo que al mover la veleta deberíamos ver una lectura entre 0 y 4095, lo cual corresponde a una tensión de 0 a 3.3V. Para obtener la dirección del viento se debe convertir en el software el rango [0, 4095] a un rango de [0, 360] .</p>
-<p>El potenciómetro de la veleta tiene una posición sin salida que dará como resultado el valor 0 en el pin analógico. El diagrama siguiente muestra la posición sin salida del anemómetro. La veleta está calibrada de fábrica para ser 0 cuando la veleta está alineada con la barra de soporte apuntando hacia fuera del soporte de montaje.</p>
+<p>El circuito de dirección del viento se conecta a un pin analógico.</p>
+<p>El ESP32 tiene un ADC de 12 bits por lo que al mover la veleta se obtiene lectura entre 0 y 4095, lo cual corresponde a una tensión de 0 y 3.3V. Para obtener la dirección del viento se debe convertir en el software el rango [0, 4095] a un rango de [0, 360] .</p>
+<p>El potenciómetro de la veleta tiene una zona muerta que dará como resultado el valor 0 en el pin analógico. La veleta está calibrada de fábrica para ser 0 cuando la veleta está alineada con la barra de soporte apuntando hacia fuera del soporte de montaje. Esto se muestra en el diagrama de la Figura 3.</p>
 <p align="center">
   <img alt="img-name" src="https://i.imgur.com/QN2Mvz8.png" width="450">
   <br>
-    <em>Medición Dirección del Viento</em>
+    <em>Fig. 3 Medición Dirección del Viento</em>
 </p>
 <h3 id="medición-velocidad-del-viento">Medición Velocidad del Viento<a href="#medición-velocidad-del-viento" class="anchor" aria-hidden="true">#</a> </h3>
-<p>Las copas de viento tienen un <em>reed-switch</em> o interruptor magnético de láminas montado en su interior cerca del eje. Este interruptor se activa una vez por cada revolución de las copas.</p>
-<p align="center">
-  <img alt="img-name" src="https://i.imgur.com/lAB378x.png" width="450">
-  <br>
-    <em>Circuito Velocidad del Viento</em>
-</p>
-<p>Usamos este pulso en un pin digital para detectar cada vez que las copas de viento pasan por una revolución. En esta conexión estamos usando una resistencia pullup de 4.7K. Si no usamos una resistencia pullup el voltaje del circuito podría causar falsos disparos en la entrada.</p>
-<ol>
-<li>Esta resistencia llevará el pin digital a 5V cuando el interruptor esté abierto.</li>
-<li>Cuando el interruptor de las copas de viento se cierra entonces el pin será conectado a GND por una corta duración mientras el imán pasa el interruptor.</li>
-</ol>
-<p>Para calcular la velocidad del viento aplicamos una fórmula que convierte el número de veces que se activa el interruptor por periodo de tiempo en millas por hora. Según el documento técnico del anemómetro Davis, 1 milla por hora equivale a 1600 revoluciones por hora. Utilizando la siguiente fórmula podemos calcular la velocidad en millas por hora.</p>
+<p>El circuito de velocidad del viento se conecta a un pin digital, donde se utiliza el pulso enviado por el switch magnético para detectar cada vez que las copas de viento realizan una revolución. En esta conexión se utiliza una resistencia pullup. Esta resistencia llevará el pin digital a VCC cuando el interruptor esté abierto, si no se conecta el voltaje del circuito podría causar falsos disparos en la entrada.</p>
+<p>Según el documento técnico del anemómetro, 1600 revoluciones por hora equivalen a 1 milla por hora. Para calcular la velocidad del viento se convierte el número de veces que se activa el interruptor por periodo de tiempo aplicando la siguiente fórmula</p>
 <p>$V = P(\frac{2,25}{T})$</p>
 <p>donde $V$ es la velocidad en millas por hora, $P$ es el número de pulsos por periodo de muestreo, y $T$ es el periodo de muestreo en segundos.</p>
-<p>Debido a la naturaleza aleatoria de las activaciones del interruptor en el pin, utilizamos una interrupción por hardware en el pin de entrada digital que genera una interrupción en el flanco descendente del pulso (5V cayendo a GND y volviendo a 5V cuando el interruptor es cerrado por el anemómetro). La rutina de servicio de interrupción (ISR) que se ejecuta en la interrupción incrementa un contador.</p>
-<p>Utilizamos un retardo de 3 segundos para obtener una muestra media de la velocidad del viento.</p>
+<p>Debido a la naturaleza aleatoria de las activaciones del switch, se utiliza una interrupción por hardware en el pin de entrada digital que genera una interrupción en el flanco descendente del pulso. La rutina de servicio de interrupción (ISR) que se ejecuta en la interrupción incrementa un contador.</p>
+<h3 id="código-de-programación">Código de Programación<a href="#código-de-programación" class="anchor" aria-hidden="true">#</a> </h3>
+<p>Teniendo en cuenta el Datasheet del piranometro [^fn2] se desarrolla una biblioteca que permite obtener la lectura de la radiación solar.</p>
+<p>La biblioteca esta disponible en <a href="https://github.com/MMAPudenar/Davis">GitHub</a>. Se compone de un archivo de cabecera <code>davis6410.hpp</code> y un archivo de implementación <code>davis6410.cpp</code> donde se encuentran las operaciones y comandos necesarios para la conversión del valor analógico en una dato de radiación global.</p>
+<p>A continuación se presenta un código de ejemplo para la medición con el anemómetro Davis 6410.</p>
+<script src="https://gist.github.com/JoePortilla/070e6c2c244128fbf2f72645db845e17.js"></script>
 <h2 id="referencias">Referencias<a href="#referencias" class="anchor" aria-hidden="true">#</a> </h2>
 
 			<div class="docs-navigation d-flex justify-content-between">
@@ -293,7 +291,7 @@
   <script src="https://mmapudenar.github.io/js/vendor/katex/dist/katex.min.a16c5ca92b3cba474a697a3146ca2ed1486305bf2f452dc16a5c8701fcc524d72779ba521ef7f61212fc43a2eedb2a94598e948b0c7f2a510f6ac88e7edafdd0.js" integrity="sha512-oWxcqSs8ukdKaXoxRsou0UhjBb8vRS3BalyHAfzFJNcnebpSHvf2EhL8Q6Lu2yqUWY6Uiwx/KlEPasiOftr90A==" crossorigin="anonymous" defer></script>
     <script src="https://mmapudenar.github.io/js/vendor/katex/dist/contrib/auto-render.min.b367aaf20f22663f79cc66de5558d99f3392981b198f21229e9f6acedb41defe9d682a88b1a1eefddf271fb7260bc5b58c55c0a24779e5358b3c51392dd34d56.js" integrity="sha512-s2eq8g8iZj95zGbeVVjZnzOSmBsZjyEinp9qzttB3v6daCqIsaHu/d8nH7cmC8W1jFXAokd55TWLPFE5LdNNVg==" crossorigin="anonymous" defer></script>
   <script src="https://mmapudenar.github.io/main.min.7ebe89441904dda7661149e63fbe43501464a92ff46162cca013d200684516a1deb1dbc83f0780f78a4ab78f74be173e33f174a8518d1eb2f692b09564723789.js" integrity="sha512-fr6JRBkE3admEUnmP75DUBRkqS/0YWLMoBPSAGhFFqHesdvIPweA94pKt490vhc&#43;M/F0qFGNHrL2krCVZHI3iQ==" crossorigin="anonymous" defer></script>
-  <script src="https://mmapudenar.github.io/index.min.548d8be0d2092ce6169131339337b4b21785d95f3ce9dc1a1328711a08f8d9207e88c2dbe2c167e67a091a91bb766d1ae38c6395180dcb08e5ddc7b9ad93f02b.js" integrity="sha512-VI2L4NIJLOYWkTEzkze0sheF2V886dwaEyhxGgj42SB&#43;iMLb4sFn5noJGpG7dm0a44xjlRgNywjl3ce5rZPwKw==" crossorigin="anonymous" defer></script>
+  <script src="https://mmapudenar.github.io/index.min.81fe8a1505eca8ea5194566e87f32995c6cb41550f956a586f794ed639be8c6a7e76e69d3b0f018ff37b74de2d320c5e6b3dc052fc2c1400c54b28afec7e8364.js" integrity="sha512-gf6KFQXsqOpRlFZuh/MplcbLQVUPlWpYb3lO1jm&#43;jGp&#43;duadOw8Bj/N7dN4tMgxeaz3AUvwsFADFSyiv7H6DZA==" crossorigin="anonymous" defer></script>
   
   </body>
 </html>
