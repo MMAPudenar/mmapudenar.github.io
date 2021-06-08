@@ -71,7 +71,8 @@ Por otra parte ERA5 tiene una correlación media, acorde a su documentación se 
       <pubDate>Thu, 12 Nov 2020 13:26:54 +0100</pubDate>
       
       <guid>https://mmapudenar.github.io/docs/modelo/site-adaptation/</guid>
-      <description>Radiación Solar Velocidad del Viento Humedad Relativa Temperatura </description>
+      <description>Metodología propuesta Radiación Solar La radiación solar se constituye por varios componentes. Por regla general, para poder evaluar el recurso solar así como para monitorizar plantas solares, es preciso medir las tres componentes principales: la normal directa (DNI), la horizontal global (GHI), la horizontal difusa (DHI) y, opcionalmente, la normal global (GNI). Parámetros físicos como la temperatura también se encuentran relacionados a la radiación solar.
+Teniendo en cuenta los datos involucrados en el fenómeno analizado, la metodología propuesta para realizar el modelo de site-adaptation de radiación solar global se observa en el diagrama de bloques de la Figura 1.</description>
     </item>
     
     <item>
