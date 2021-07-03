@@ -125,7 +125,7 @@
     </ul>
   <h3>Modelo de Predicción</h3>
   <ul class="list-unstyled">
-    <li><a class="docs-link" href="https://mmapudenar.github.io/docs/modelo/indice/">Contenido de Sección</a></li>
+    <li><a class="docs-link" href="https://mmapudenar.github.io/docs/modelo/indice/">Contenido de Sección Modelo Predicción</a></li>
     <li><a class="docs-link" href="https://mmapudenar.github.io/docs/modelo/filt/">Preprocesamiento de Datos</a></li>
     <li><a class="docs-link" href="https://mmapudenar.github.io/docs/modelo/correlacion/">Correlación entre bases de datos</a></li>
     <li><a class="docs-link" href="https://mmapudenar.github.io/docs/modelo/site-adaptation/">Site-adaptation</a></li>
@@ -181,9 +181,9 @@
 <p align="center">
   <img alt="img-name" src="https://imgur.com/aomE6Ym.jpg" width="400">
   <br>
-    <em>Sensor SHT30 con carcasa de protección impermeable</em>
+    <em><b>Fig. 1.</b> Sensor SHT30 con carcasa de protección impermeable</em>
 </p>
-<p>El sensor tiene una salida digital calibrada internamente, linealizada y con compensación de temperatura. Consigue una detección precisa y de alta fiabilidad de temperatura y humedad para la monitorización del entorno urbano, los edificios inteligentes, la automatización industrial, el hogar inteligente y otras aplicaciones del Internet de las cosas <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>.</p>
+<p>El sensor tiene una salida digital calibrada internamente, linealizada y con compensación de temperatura. Consigue una detección precisa y de alta fiabilidad de temperatura y humedad para su monitoreo en el entorno urbano, los edificios inteligentes, la automatización industrial y otras aplicaciones del Internet de las cosas <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>.</p>
 <h3 id="características-técnicas">Características técnicas<a href="#características-técnicas" class="anchor" aria-hidden="true">#</a> </h3>
 <p>Las especificaciones del sensor se dan en la siguiente Tabla <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
 <table>
@@ -225,16 +225,50 @@
 </tbody>
 </table>
 <h3 id="montaje">Montaje<a href="#montaje" class="anchor" aria-hidden="true">#</a> </h3>
+<h4 id="soporte">Soporte<a href="#soporte" class="anchor" aria-hidden="true">#</a> </h4>
+<p>Se diseño el soporte de la Figura 2 para lograr el montaje del sensor.</p>
+<p align="center">
+  <script src="https://embed.github.com/view/3d/MMAPudenar/SoportesEMA/main/Soporte%20Sensor%20de%20Temperatura%20y%20Hum.%20Relativa.stl?height=300&width=500"></script>
+  <br>
+  <em><b>Fig. 2.</b>  Soporte para piranómetro.</em>
+</p>
+<h4 id="protector-de-radiación">Protector de Radiación<a href="#protector-de-radiación" class="anchor" aria-hidden="true">#</a> </h4>
 <p>Como accesorio lleva un protector para radiación con ventilación natural. Este dispositivo de apantallamiento múltiple protege al sensor de temperatura de la radiación directa y difusa, ya que, si ésta incidiese directamente sobre él, se registrarían medidas muy superiores a la real. Su efecto sobre la medición de Humedad Relativa es el de evitar el rocío, la condensación o la lluvia, eliminando el efecto de histéresis que produciría. Su diseño es tal que permite la ventilación natural y facilita el acceso al sensor para su montaje y desmontaje.</p>
 <p align="center">
   <img alt="img-name" src="https://i.imgur.com/OPcwxey.png" width="150">
   <br>
-    <em>Protector de Radiación para sensor.</em>
+    <em><b>Fig. 3.</b> Protector de Radiación para sensor.</em>
 </p>
 <h3 id="conexión">Conexión<a href="#conexión" class="anchor" aria-hidden="true">#</a> </h3>
 <p>La conexión al microcontrolador se realiza mediante interfaz I2C.</p>
+<table>
+<thead>
+<tr>
+<th>Color de Cable</th>
+<th>Conexión</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rojo</td>
+<td>VCC</td>
+</tr>
+<tr>
+<td>Negro</td>
+<td>GND</td>
+</tr>
+<tr>
+<td>Amarillo</td>
+<td>SCL</td>
+</tr>
+<tr>
+<td>Verde</td>
+<td>SDA</td>
+</tr>
+</tbody>
+</table>
 <h3 id="código-de-programación">Código de Programación<a href="#código-de-programación" class="anchor" aria-hidden="true">#</a> </h3>
-<p>Teniendo en cuenta el Datasheet de la familia de sensores &lsquo;Sensirion SHT3X&rsquo; <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> (la única diferencia entre el sensor SHT30, SHT31 y SHT35 es su resolución) se desarrolla una biblioteca que permite obtener la lectura de datos de Temperatura [°C], Humedad Relativa [%] y la tolerancia respectiva de cada medición.</p>
+<p>Teniendo en cuenta el Datasheet de la familia de sensores &lsquo;Sensirion SHT3X&rsquo; <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> se desarrolla una biblioteca que permite obtener la lectura de datos de Temperatura [°C], Humedad Relativa [%] y la tolerancia respectiva de cada medición.</p>
 <p>La biblioteca esta disponible en <a href="https://github.com/MMAPudenar/SHT3x">GitHub</a>. Se compone de un archivo de cabecera <code>sht3x.hpp</code> y un archivo de implementación <code>sht3x.cpp</code> donde se encuentran los registros y comandos necesarios para comunicar al microcontrolador con el sensor mediante protocolo I2C.</p>
 <p>A continuación se presenta un código de ejemplo para la medición con el sensor SHT30.</p>
 <script src="https://gist.github.com/JoePortilla/6fdf30c81b4b42c0c8daf75c7e33de1a.js"></script>
@@ -297,7 +331,7 @@
   <script src="https://mmapudenar.github.io/js/vendor/katex/dist/katex.min.a16c5ca92b3cba474a697a3146ca2ed1486305bf2f452dc16a5c8701fcc524d72779ba521ef7f61212fc43a2eedb2a94598e948b0c7f2a510f6ac88e7edafdd0.js" integrity="sha512-oWxcqSs8ukdKaXoxRsou0UhjBb8vRS3BalyHAfzFJNcnebpSHvf2EhL8Q6Lu2yqUWY6Uiwx/KlEPasiOftr90A==" crossorigin="anonymous" defer></script>
     <script src="https://mmapudenar.github.io/js/vendor/katex/dist/contrib/auto-render.min.b367aaf20f22663f79cc66de5558d99f3392981b198f21229e9f6acedb41defe9d682a88b1a1eefddf271fb7260bc5b58c55c0a24779e5358b3c51392dd34d56.js" integrity="sha512-s2eq8g8iZj95zGbeVVjZnzOSmBsZjyEinp9qzttB3v6daCqIsaHu/d8nH7cmC8W1jFXAokd55TWLPFE5LdNNVg==" crossorigin="anonymous" defer></script>
   <script src="https://mmapudenar.github.io/main.min.7ebe89441904dda7661149e63fbe43501464a92ff46162cca013d200684516a1deb1dbc83f0780f78a4ab78f74be173e33f174a8518d1eb2f692b09564723789.js" integrity="sha512-fr6JRBkE3admEUnmP75DUBRkqS/0YWLMoBPSAGhFFqHesdvIPweA94pKt490vhc&#43;M/F0qFGNHrL2krCVZHI3iQ==" crossorigin="anonymous" defer></script>
-  <script src="https://mmapudenar.github.io/index.min.8d96f51c2f6afd6d9aa9b9c2829c5382767a964de1a5c2c9aaef80d1f0c74fdac57dbdf6706d68d22c3ebdc71e22a753e96b793af7daab94cac09b15fb739e38.js" integrity="sha512-jZb1HC9q/W2aqbnCgpxTgnZ6lk3hpcLJqu&#43;A0fDHT9rFfb32cG1o0iw&#43;vcceIqdT6Wt5Ovfaq5TKwJsV&#43;3OeOA==" crossorigin="anonymous" defer></script>
+  <script src="https://mmapudenar.github.io/index.min.93359410660700eb7f12c6d828f4e16b620c16a277e3233d108b0e095996b09cd4c61bb7b17b9b2eb41d52788acc91f0f8c446670ca4b4168b8a9c5705b18c1d.js" integrity="sha512-kzWUEGYHAOt/EsbYKPTha2IMFqJ34yM9EIsOCVmWsJzUxhu3sXubLrQdUniKzJHw&#43;MRGZwyktBaLipxXBbGMHQ==" crossorigin="anonymous" defer></script>
   
   </body>
 </html>

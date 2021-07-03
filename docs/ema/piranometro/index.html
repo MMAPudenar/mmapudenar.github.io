@@ -125,7 +125,7 @@
     </ul>
   <h3>Modelo de Predicción</h3>
   <ul class="list-unstyled">
-    <li><a class="docs-link" href="https://mmapudenar.github.io/docs/modelo/indice/">Contenido de Sección</a></li>
+    <li><a class="docs-link" href="https://mmapudenar.github.io/docs/modelo/indice/">Contenido de Sección Modelo Predicción</a></li>
     <li><a class="docs-link" href="https://mmapudenar.github.io/docs/modelo/filt/">Preprocesamiento de Datos</a></li>
     <li><a class="docs-link" href="https://mmapudenar.github.io/docs/modelo/correlacion/">Correlación entre bases de datos</a></li>
     <li><a class="docs-link" href="https://mmapudenar.github.io/docs/modelo/site-adaptation/">Site-adaptation</a></li>
@@ -220,27 +220,32 @@
 </tbody>
 </table>
 <h3 id="montaje">Montaje<a href="#montaje" class="anchor" aria-hidden="true">#</a> </h3>
-<p>El piranómetro puede montarse en una superficie horizontal o paralela a la superficie de interés para realizar mediciones en un sistema de energía solar o fotovoltaica. Se recomienda instalar el sensor en una superficie sólida con el tornillo de montaje de nylon que se suministra. Para medir con precisión el PPFD incidente en una superficie horizontal, el sensor debe estar nivelado <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>.</p>
-<p>El sensor incluye un conector de cable de acero inoxidable de grado marino IP68 a 30 cm del cabezal para simplificar la extracción y el reemplazo del sensor para su mantenimiento y recalibración.</p>
-<p>Para minimizar el error de acimut, <strong>el sensor debe montarse con el cable apuntando hacia el norte verdadero en el hemisferio norte</strong> o hacia el sur verdadero en el hemisferio sur. El error de acimut es típicamente menor al 1%, pero es fácil de minimizar por la orientación adecuada del cable.</p>
+<h4 id="orientación">Orientación<a href="#orientación" class="anchor" aria-hidden="true">#</a> </h4>
+<p>Para minimizar el error de acimut, el sensor debe montarse con el cable apuntando hacia el norte verdadero en el hemisferio norte o hacia el sur verdadero en el hemisferio sur, como se observa en la Figura 2. El error de acimut es típicamente menor al 1%, pero es fácil de minimizar por la orientación adecuada del cable.</p>
 <p align="center">
   <img alt="img-name" src="https://i.imgur.com/a5KCfVC.png" width="400">
   <br>
-    <em>Fig. 2 Orientación recomendada del Piranómetro</em>
+    <em>Fig. 2 Orientación recomendada del Piranómetro.</em>
 </p>
-<p>Además de orientar el cable para que apunte hacia el polo más cercano, el sensor también <strong>debe montarse de manera que las obstrucciones no hagan sombra al sensor</strong>. Por ejemplo, la torre de la estación meteorológica u otros instrumentos.</p>
-<p><strong>Una vez montado, se debe retirar la tapa verde del sensor.</strong> La tapa verde puede utilizarse como cubierta protectora para el sensor cuando no esté en uso.</p>
+<p>Además de orientar el cable para que apunte hacia el polo más cercano, el sensor también debe montarse de manera que la torre de la estación meteorológica u otros instrumentos no hagan sombra al sensor.</p>
+<h4 id="soporte">Soporte<a href="#soporte" class="anchor" aria-hidden="true">#</a> </h4>
+<p>Se debe instalar el sensor en una superficie horizontal y sólida donde se asegure que el sensor este nivelado <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>. Se diseño el soporte de la Figura 3 para lograr los requerimientos del montaje.</p>
+<p align="center">
+  <script src="https://embed.github.com/view/3d/MMAPudenar/SoportesEMA/main/Soporte%20Piranometro.stl?height=300&width=500"></script>
+  <br>
+  <em>Fig. 3 Soporte para piranómetro.</em>
+</p>
 <h3 id="conexión">Conexión<a href="#conexión" class="anchor" aria-hidden="true">#</a> </h3>
-<p>El piranometro tiene una señal de voltaje positiva dada por el cable rojo y una negativa dada por el cable negro. Si se espera una cantidad significativa de ruido eléctrico, entonces se debe utilizar el cable blanco de masa <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>.</p>
+<p>El piranometro tiene una señal de voltaje positiva dada por el cable rojo y una negativa dada por el cable negro. Si se espera una cantidad significativa de ruido eléctrico, entonces se debe utilizar el cable blanco de masa <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>. Los pines de salida del sensor se observan en la Figura 4.</p>
 <p align="center">
   <img alt="img-name" src="https://i.imgur.com/yvjY86W.png" width="400">
   <br>
-    <em>Fig. 3 Pines de salida del Piranómetro</em>
+    <em>Fig. 4 Pines de salida del Piranómetro</em>
 </p>
 <h3 id="acondicionamiento-de-señal">Acondicionamiento de señal<a href="#acondicionamiento-de-señal" class="anchor" aria-hidden="true">#</a> </h3>
 <p>Debido a que el sensor presenta una salida de voltaje muy pequeña del orden de los milivoltios, se requiere un etapa de amplificación para que el microcontrolador pueda leer esta tensión de forma adecuada.</p>
-<p>En este caso el rango de medición de entrada para cubrir la radiación total de onda corta procedente del sol va de 0 a 250 mV aproximadamente. Es raro que la radiación solar sea superior a 250 mV, pero puede ocurrir cerca del mediodía solar cuando las nubes finas aumentan la radiación descendente. Entonces se sobredimensiona 20% el valor y se elige 300 mV como el voltaje máximo de salida del sensor.</p>
-<p>Para amplificar este tipo de señales de baja potencia se utilizan amplificadores de instrumentación, como el INA128, un dispositivo de uso general que ofrece una excelente precisión ideal para este tipo de aplicaciones. El circuito de entrada de retroalimentación de corriente proporciona un amplio ancho de banda incluso con alta ganancia, la cual se establece con una resistencia externa <sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>. Las especificaciones del INA128 son</p>
+<p>En este caso el rango de medición de entrada para cubrir la radiación total de onda corta procedente del sol va de 0 a 250 mV aproximadamente. Es raro que la radiación solar sea superior a 250 mV, pero puede ocurrir cerca del mediodía solar cuando las nubes finas aumentan la radiación descendente. Entonces se sobredimensiona 20% el valor y se supone 300 mV como el voltaje máximo de salida del sensor.</p>
+<p>Para amplificar este tipo de señales de baja potencia se utilizan amplificadores de instrumentación, como el AD623, un amplificador de uso general que ofrece una excelente precisión ideal para este tipo de aplicaciones. El circuito de entrada de retroalimentación de corriente proporciona un amplio ancho de banda incluso con alta ganancia, la cual se establece con una resistencia externa <sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>. Las especificaciones del AD623 son</p>
 <table>
 <thead>
 <tr>
@@ -251,19 +256,15 @@
 <tbody>
 <tr>
 <td>Voltaje de operación</td>
-<td>±2.25V ∼ ±18V</td>
-</tr>
-<tr>
-<td>Corriente de Salida</td>
-<td>15mA</td>
+<td>±2.5V ∼ ±6V</td>
 </tr>
 <tr>
 <td>Corriente de Entrada</td>
-<td>2nA</td>
+<td>50$\mu$A</td>
 </tr>
 <tr>
 <td>Ancho de Banda</td>
-<td>1.3 MHz</td>
+<td>800 KHz</td>
 </tr>
 <tr>
 <td>Rango de Operación</td>
@@ -272,17 +273,19 @@
 </tbody>
 </table>
 <p>La ganancia del amplificador es dada por</p>
-<p>$G=1+\frac{50K}{R_G},$</p>
-<p>donde $G$ es la ganancia y $R_G$ la resistencia de ajuste de ganancia. El microcontrolador ESP32 tiene un voltaje máximo de entrada en los pines ADC de 3.3V, y el amplificador es alimentado con una fuente doble de ±2.5V como se detalla en la siguiente subsección. Para evitar saturar el amplificador con un voltaje mayor al de alimentación, se escoge una ganancia de $G=8$, por lo que se requiere una resistencia de</p>
-<p>$R_G=\frac{50K}{G-1}=7142\Omega \approx 7.2K\Omega$</p>
+<p>$G=1+\frac{100K}{R_G},$</p>
+<p>donde $G$ es la ganancia y $R_G$ la resistencia de ajuste de ganancia. El microcontrolador ESP32 tiene un voltaje máximo de entrada en los pines ADC de $3.3V$, para evitar dañar el microcontrolador con un voltaje mayor al permitido se escoge una ganancia de $G=7$, por lo que se requiere una resistencia de</p>
+<p>$R_G=\frac{100K}{G-1}=1670\Omega \approx 18K\Omega$</p>
 <h4 id="alimentación-del-amplificador-operacional">Alimentación del amplificador operacional<a href="#alimentación-del-amplificador-operacional" class="anchor" aria-hidden="true">#</a> </h4>
-<p>Ya que todo el sistema electrónico se alimenta con una fuente simple de 5V <sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup></p>
+<p>Para lograr un correcto funcionamiento de la etapa de amplificación se debe alimentar el amplificador utilizando una fuente de voltaje dual. Ya que todo el sistema electrónico se alimenta con una fuente simple de $5V$, se obtiene la referencia de voltaje negativa a partir de una salida PWM del ESP32 implementando un circuito denominado &ldquo;Charge Pump&rdquo;&hellip;. Del cual sale una tensión de $-2.5V$</p>
+<p align="center">
+  <img alt="img-name" src=" " width="400">
+  <br>
+    <em>Fig. 5 Circuito Charge Pump</em>
+</p>
 <h3 id="calculo-de-radiación">Calculo de Radiación<a href="#calculo-de-radiación" class="anchor" aria-hidden="true">#</a> </h3>
-<h4 id="factor-de-calibración">Factor de Calibración<a href="#factor-de-calibración" class="anchor" aria-hidden="true">#</a> </h4>
-<p>Todos los modelos de piranómetros no amplificados de Apogee tienen un factor de calibración estándar de exactamente: $5\frac{W}{m^2}$ por $mV$.</p>
-<h4 id="conversión">Conversión<a href="#conversión" class="anchor" aria-hidden="true">#</a> </h4>
-<p>Multiplicar este factor de calibración por la señal de $mV$ medida para convertir la salida del sensor en radiación de onda corta en unidades de $W/m^2$</p>
-<p>Factor de calibración ( $5.0~W/m^{2}$  por $mV$) * Señal del sensor ($mV$) = Radiación ( $W/m^2$)</p>
+<p>Todos los modelos de piranómetros no amplificados de Apogee tienen un factor de calibración estándar de exactamente: $5\frac{W}{m^2}$ por $mV$.
+Multiplicando este factor de calibración por la señal de $mV$ medida por la salida del sensor se obtiene la radiación de onda corta en unidades de $W/m^2$.</p>
 <h3 id="código-de-programación">Código de Programación<a href="#código-de-programación" class="anchor" aria-hidden="true">#</a> </h3>
 <p>Teniendo en cuenta el Datasheet del piranometro <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> se desarrolla una biblioteca que permite obtener la lectura de la radiación solar.</p>
 <p>La biblioteca esta disponible en <a href="https://github.com/MMAPudenar/SP110">GitHub</a>. Se compone de un archivo de cabecera <code>sp110.hpp</code> y un archivo de implementación <code>sp110.cpp</code> donde se encuentran las operaciones y comandos necesarios para la conversión del valor analógico en un dato de radiación global.</p>
@@ -290,7 +293,7 @@
 <script src="https://gist.github.com/JoePortilla/b89892c1462bd63ed5dc71d4f4e4d496.js"></script>
 <h3 id="mantenimiento">Mantenimiento<a href="#mantenimiento" class="anchor" aria-hidden="true">#</a> </h3>
 <p>La humedad o los residuos en el difusor son una causa común de las bajas lecturas. El sensor tiene un difusor abovedado y una carcasa para mejorar la autolimpieza de las precipitaciones, pero pueden acumularse materiales en el difusor (por ejemplo, polvo durante los períodos de escasas precipitaciones, depósitos de sal por evaporación del agua de mar o de riego por aspersión) y bloquear parcialmente el camino óptico.</p>
-<p><strong>La mejor manera de eliminar el polvo o los depósitos orgánicos es utilizando agua o limpiador de ventanas y un paño suave o un hisopo de algodón</strong>. Los depósitos de sal deben disolverse con vinagre y eliminarse con un paño suave o un bastoncillo de algodón. Nunca utilice un material abrasivo o un limpiador en el difusor.</p>
+<p>La mejor manera de eliminar el polvo o los depósitos orgánicos es utilizando agua o limpiador de ventanas y un paño suave o un hisopo de algodón. Los depósitos de sal deben disolverse con vinagre y eliminarse con un paño suave o un bastoncillo de algodón. No se debe utilizar un material abrasivo o un limpiador en el difusor.</p>
 <p>Aunque los sensores de Apogee son muy estables, la deriva de precisión nominal es normal para todos los sensores de grado de investigación. Para asegurar la máxima precisión, generalmente se recomienda que los sensores se envíen para su recalibración cada dos años, aunque a menudo se puede esperar más tiempo según tolerancias particulares <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>.</p>
 <h2 id="referencias">Referencias<a href="#referencias" class="anchor" aria-hidden="true">#</a> </h2>
 <section class="footnotes" role="doc-endnotes">
@@ -303,10 +306,7 @@
 <p><a href="https://www.apogeeinstruments.com/content/SP-110-manual.pdf">SP-110 Manual</a>&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:3" role="doc-endnote">
-<p><a href="http://instrumentation.obs.carnegiescience.edu/ccd/parts/INA128.pdf">INA128 Datasheet</a>.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:4" role="doc-endnote">
-<p><a href="http://web.mit.edu/6.101/www/reference/op_amps_everyone.pdf">OP Amps everyone</a>.&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p><a href="https://www.analog.com/media/en/technical-documentation/data-sheets/AD623.pdf">AD623 Datasheet</a>.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </section>
@@ -357,7 +357,7 @@
   <script src="https://mmapudenar.github.io/js/vendor/katex/dist/katex.min.a16c5ca92b3cba474a697a3146ca2ed1486305bf2f452dc16a5c8701fcc524d72779ba521ef7f61212fc43a2eedb2a94598e948b0c7f2a510f6ac88e7edafdd0.js" integrity="sha512-oWxcqSs8ukdKaXoxRsou0UhjBb8vRS3BalyHAfzFJNcnebpSHvf2EhL8Q6Lu2yqUWY6Uiwx/KlEPasiOftr90A==" crossorigin="anonymous" defer></script>
     <script src="https://mmapudenar.github.io/js/vendor/katex/dist/contrib/auto-render.min.b367aaf20f22663f79cc66de5558d99f3392981b198f21229e9f6acedb41defe9d682a88b1a1eefddf271fb7260bc5b58c55c0a24779e5358b3c51392dd34d56.js" integrity="sha512-s2eq8g8iZj95zGbeVVjZnzOSmBsZjyEinp9qzttB3v6daCqIsaHu/d8nH7cmC8W1jFXAokd55TWLPFE5LdNNVg==" crossorigin="anonymous" defer></script>
   <script src="https://mmapudenar.github.io/main.min.7ebe89441904dda7661149e63fbe43501464a92ff46162cca013d200684516a1deb1dbc83f0780f78a4ab78f74be173e33f174a8518d1eb2f692b09564723789.js" integrity="sha512-fr6JRBkE3admEUnmP75DUBRkqS/0YWLMoBPSAGhFFqHesdvIPweA94pKt490vhc&#43;M/F0qFGNHrL2krCVZHI3iQ==" crossorigin="anonymous" defer></script>
-  <script src="https://mmapudenar.github.io/index.min.8d96f51c2f6afd6d9aa9b9c2829c5382767a964de1a5c2c9aaef80d1f0c74fdac57dbdf6706d68d22c3ebdc71e22a753e96b793af7daab94cac09b15fb739e38.js" integrity="sha512-jZb1HC9q/W2aqbnCgpxTgnZ6lk3hpcLJqu&#43;A0fDHT9rFfb32cG1o0iw&#43;vcceIqdT6Wt5Ovfaq5TKwJsV&#43;3OeOA==" crossorigin="anonymous" defer></script>
+  <script src="https://mmapudenar.github.io/index.min.93359410660700eb7f12c6d828f4e16b620c16a277e3233d108b0e095996b09cd4c61bb7b17b9b2eb41d52788acc91f0f8c446670ca4b4168b8a9c5705b18c1d.js" integrity="sha512-kzWUEGYHAOt/EsbYKPTha2IMFqJ34yM9EIsOCVmWsJzUxhu3sXubLrQdUniKzJHw&#43;MRGZwyktBaLipxXBbGMHQ==" crossorigin="anonymous" defer></script>
   
   </body>
 </html>
