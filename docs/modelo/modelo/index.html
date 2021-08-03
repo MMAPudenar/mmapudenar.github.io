@@ -15,18 +15,18 @@
   <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <title>Modelo de Predicción | MMAP</title>
-<meta name="description" content="Modelo de Predicción de Temperatura Univariado y Multivariado utilizando Redes Neuronales Recurrentes.">
+<meta name="description" content="Modelos de Predicción de Temperatura, Humedad Relativa, Velocidad del Viento y Radiación solar. Implementados con Redes Neuronales Recurrentes.">
 <link rel="canonical" href="https://mmapudenar.github.io/docs/modelo/modelo/">
 <meta name="twitter:card" content="summary_large_image">
       <meta name="twitter:image" content="/doks.png">
     <meta name="twitter:title" content="Modelo de Predicción">
-<meta name="twitter:description" content="Modelo de Predicción de Temperatura Univariado y Multivariado utilizando Redes Neuronales Recurrentes.">
+<meta name="twitter:description" content="Modelos de Predicción de Temperatura, Humedad Relativa, Velocidad del Viento y Radiación solar. Implementados con Redes Neuronales Recurrentes.">
 
 <meta name="twitter:site" content="@henkverlinde">
 <meta name="twitter:creator" content="@henkverlinde">
 
 <meta property="og:title" content="Modelo de Predicción">
-<meta property="og:description" content="Modelo de Predicción de Temperatura Univariado y Multivariado utilizando Redes Neuronales Recurrentes.">
+<meta property="og:description" content="Modelos de Predicción de Temperatura, Humedad Relativa, Velocidad del Viento y Radiación solar. Implementados con Redes Neuronales Recurrentes.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="/docs/modelo/modelo/">
 
@@ -120,7 +120,7 @@
 			<nav class="docs-links" aria-label="Main navigation">
 				<h3>Introducción</h3>
   <ul class="list-unstyled">
-    <li><a class="docs-link" href="https://mmapudenar.github.io/docs/intro/mmap/">Sistema MMAP</a></li>
+    <li><a class="docs-link" href="https://mmapudenar.github.io/docs/intro/mmap/">Resumen</a></li>
     <li><a class="docs-link" href="https://mmapudenar.github.io/docs/intro/equipo/">Equipo de Trabajo</a></li>
     </ul>
   <h3>Modelo de Predicción</h3>
@@ -158,8 +158,10 @@
     <h3>On this page</h3>
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#problems">Problems</a></li>
-    <li><a href="#referencias">Referencias</a></li>
+    <li><a href="#predicción-de-radiación-solar">Predicción de Radiación solar</a></li>
+    <li><a href="#predicción-de--velocidad-del-viento">Predicción de  Velocidad del Viento</a></li>
+    <li><a href="#predicción-de-humedad-relativa">Predicción de Humedad Relativa</a></li>
+    <li><a href="#predicción-de-temperatura">Predicción de Temperatura</a></li>
   </ul>
 </nav>
   </div>
@@ -168,9 +170,61 @@
 		<main class="docs-content col-lg-11 col-xl-9">
 		
 			<h1>Modelo de Predicción</h1>
-			<p class="lead">Modelo de Predicción de Temperatura Univariado y Multivariado utilizando Redes Neuronales Recurrentes.</p>
-			<h2 id="problems">Problems<a href="#problems" class="anchor" aria-hidden="true">#</a> </h2>
-<h2 id="referencias">Referencias<a href="#referencias" class="anchor" aria-hidden="true">#</a> </h2>
+			<p class="lead">Modelos de Predicción de Temperatura, Humedad Relativa, Velocidad del Viento y Radiación solar. Implementados con Redes Neuronales Recurrentes.</p>
+			<p>Para cada una de las variables, tanto en modelos con entrada univariada como multivariada, se analizaron los siguientes parámetros e hiperparámetros y sus respectivas combinaciones:</p>
+<ul>
+<li>Tamaños de entrada
+<ul>
+<li>24</li>
+<li>48</li>
+<li>120</li>
+</ul>
+</li>
+<li>Número de unidades LSTM en la capa de las etapas de encoder-decoder.
+<ul>
+<li>32</li>
+<li>64</li>
+<li>128</li>
+</ul>
+</li>
+</ul>
+<p>Los ajustes para el entrenamiento son los siguientes</p>
+<ul>
+<li>Optimizador: Adam.</li>
+<li>Función de perdida: Error medio cuadrático.</li>
+<li>Número de épocas para entrenamiento: 300.</li>
+<li>Número de muestras en cada batch: 2048.</li>
+</ul>
+<p>La regularización con finalización anticipada (<em>Early Stopping</em>) cuenta con estas características:</p>
+<ul>
+<li>Métrica a monitorear: Valor de perdida en conjunto de validación.</li>
+<li>Cambio mínimo considerado como mejora: 0.0001.</li>
+<li>Número de épocas sin mejora tras las cuales se detendrá el entrenamiento: 15.</li>
+</ul>
+<h2 id="predicción-de-radiación-solar">Predicción de Radiación solar<a href="#predicción-de-radiación-solar" class="anchor" aria-hidden="true">#</a> </h2>
+<p>Códigos de Programación:</p>
+<ul>
+<li><a href="https://www.kaggle.com/joeportilla/prediccion-de-radiacion-univariada-udenar">Modelo con entrada univariada.</a></li>
+<li><a href="https://www.kaggle.com/joeportilla/prediccion-radiacion-multivariada-udenar">Modelo con entrada de múltiples variables.</a></li>
+</ul>
+<h2 id="predicción-de--velocidad-del-viento">Predicción de  Velocidad del Viento<a href="#predicción-de--velocidad-del-viento" class="anchor" aria-hidden="true">#</a> </h2>
+<p>Códigos de Programación:</p>
+<ul>
+<li><a href="https://www.kaggle.com/joeportilla/prediccion-v-viento-entrada-univariada-udenar">Modelo con entrada univariada.</a></li>
+<li><a href="https://www.kaggle.com/joeportilla/prediccion-v-viento-entrada-multivariada-udenar">Modelo con entrada de múltiples variables.</a></li>
+</ul>
+<h2 id="predicción-de-humedad-relativa">Predicción de Humedad Relativa<a href="#predicción-de-humedad-relativa" class="anchor" aria-hidden="true">#</a> </h2>
+<p>Códigos de Programación:</p>
+<ul>
+<li><a href="https://www.kaggle.com/joeportilla/prediccion-hum-rel-univariada-udenar">Modelo con entrada univariada.</a></li>
+<li><a href="https://www.kaggle.com/joeportilla/prediccion-hum-rel-multivariada-udenar">Modelo con entrada de múltiples variables.</a></li>
+</ul>
+<h2 id="predicción-de-temperatura">Predicción de Temperatura<a href="#predicción-de-temperatura" class="anchor" aria-hidden="true">#</a> </h2>
+<p>Códigos de Programación:</p>
+<ul>
+<li><a href="https://www.kaggle.com/joeportilla/prediccion-de-temp-entrada-univariada-udenar">Modelo con entrada univariada.</a></li>
+<li><a href="https://www.kaggle.com/joeportilla/prediccion-de-temp-entrada-multivariada-udenar">Modelo con entrada de múltiples variables.</a></li>
+</ul>
 
 			<div class="docs-navigation d-flex justify-content-between">
 	
@@ -218,7 +272,7 @@
   <script src="https://mmapudenar.github.io/js/vendor/katex/dist/katex.min.a16c5ca92b3cba474a697a3146ca2ed1486305bf2f452dc16a5c8701fcc524d72779ba521ef7f61212fc43a2eedb2a94598e948b0c7f2a510f6ac88e7edafdd0.js" integrity="sha512-oWxcqSs8ukdKaXoxRsou0UhjBb8vRS3BalyHAfzFJNcnebpSHvf2EhL8Q6Lu2yqUWY6Uiwx/KlEPasiOftr90A==" crossorigin="anonymous" defer></script>
     <script src="https://mmapudenar.github.io/js/vendor/katex/dist/contrib/auto-render.min.b367aaf20f22663f79cc66de5558d99f3392981b198f21229e9f6acedb41defe9d682a88b1a1eefddf271fb7260bc5b58c55c0a24779e5358b3c51392dd34d56.js" integrity="sha512-s2eq8g8iZj95zGbeVVjZnzOSmBsZjyEinp9qzttB3v6daCqIsaHu/d8nH7cmC8W1jFXAokd55TWLPFE5LdNNVg==" crossorigin="anonymous" defer></script>
   <script src="https://mmapudenar.github.io/main.min.7ebe89441904dda7661149e63fbe43501464a92ff46162cca013d200684516a1deb1dbc83f0780f78a4ab78f74be173e33f174a8518d1eb2f692b09564723789.js" integrity="sha512-fr6JRBkE3admEUnmP75DUBRkqS/0YWLMoBPSAGhFFqHesdvIPweA94pKt490vhc&#43;M/F0qFGNHrL2krCVZHI3iQ==" crossorigin="anonymous" defer></script>
-  <script src="https://mmapudenar.github.io/index.min.93359410660700eb7f12c6d828f4e16b620c16a277e3233d108b0e095996b09cd4c61bb7b17b9b2eb41d52788acc91f0f8c446670ca4b4168b8a9c5705b18c1d.js" integrity="sha512-kzWUEGYHAOt/EsbYKPTha2IMFqJ34yM9EIsOCVmWsJzUxhu3sXubLrQdUniKzJHw&#43;MRGZwyktBaLipxXBbGMHQ==" crossorigin="anonymous" defer></script>
+  <script src="https://mmapudenar.github.io/index.min.096cfa5942f4635f6efa32487cbfcc6dbf4646a5779df7c170d426ed5049137e7bfaa47b09d980bc289e9ed7fefc7b2cae6eb040da78d337218c5751e4229b95.js" integrity="sha512-CWz6WUL0Y19u&#43;jJIfL/Mbb9GRqV3nffBcNQm7VBJE357&#43;qR7CdmAvCientf&#43;/Hssrm6wQNp40zchjFdR5CKblQ==" crossorigin="anonymous" defer></script>
   
   </body>
 </html>

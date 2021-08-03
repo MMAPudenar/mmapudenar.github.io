@@ -8,13 +8,12 @@
     <language>en-US</language>
     <lastBuildDate>Tue, 06 Oct 2020 08:48:23 +0000</lastBuildDate><atom:link href="https://mmapudenar.github.io/docs/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Sistema MMAP</title>
+      <title>Resumen</title>
       <link>https://mmapudenar.github.io/docs/intro/mmap/</link>
       <pubDate>Mon, 16 Nov 2020 13:59:39 +0100</pubDate>
       
       <guid>https://mmapudenar.github.io/docs/intro/mmap/</guid>
-      <description>El proyecto es
-Objetivos Funcionamiento de Plataforma Web--</description>
+      <description>Resumen En este proyecto se plantea desarrollar el proceso de diseño e implementación de un prototipo de sistema de predicción meteorológica horaria utilizando modelos de deep learning, orientado al análisis de la predicción de heladas en Nariño. Los modelos se enfocan en la predicción de los principales indicadores meteorológicos relacionados a las heladas radiativas, y se nutren de una base de datos optimizada con técnicas de machine learning y ajustada al lugar de investigación.</description>
     </item>
     
     <item>
@@ -71,7 +70,7 @@ Por otra parte ERA5 tiene una correlación media, acorde a su documentación se 
       <pubDate>Thu, 12 Nov 2020 13:26:54 +0100</pubDate>
       
       <guid>https://mmapudenar.github.io/docs/modelo/site-adaptation/</guid>
-      <description>Metodología propuesta Radiación Solar La radiación solar se constituye por varios componentes. Por regla general, para poder evaluar el recurso solar así como para monitorizar plantas solares, es preciso medir las tres componentes principales: la normal directa (DNI), la horizontal global (GHI), la horizontal difusa (DHI) y, opcionalmente, la normal global (GNI). Parámetros físicos como la temperatura también se encuentran relacionados a la radiación solar.
+      <description>Radiación Solar La radiación solar se constituye por varios componentes. Por regla general, para poder evaluar el recurso solar así como para monitorizar plantas solares, es preciso medir las tres componentes principales: la normal directa (DNI), la horizontal global (GHI), la horizontal difusa (DHI) y, opcionalmente, la normal global (GNI). Parámetros físicos como la temperatura también se encuentran relacionados a la radiación solar.
 Teniendo en cuenta los datos involucrados en el fenómeno analizado, la metodología propuesta para realizar el modelo de site-adaptation de radiación solar global se observa en el diagrama de bloques de la Figura 1.</description>
     </item>
     
@@ -81,7 +80,9 @@ Teniendo en cuenta los datos involucrados en el fenómeno analizado, la metodolo
       <pubDate>Thu, 12 Nov 2020 15:22:20 +0100</pubDate>
       
       <guid>https://mmapudenar.github.io/docs/modelo/modelo/</guid>
-      <description>Problems Referencias </description>
+      <description>Para cada una de las variables, tanto en modelos con entrada univariada como multivariada, se analizaron los siguientes parámetros e hiperparámetros y sus respectivas combinaciones:
+ Tamaños de entrada  24 48 120   Número de unidades LSTM en la capa de las etapas de encoder-decoder.  32 64 128    Los ajustes para el entrenamiento son los siguientes
+ Optimizador: Adam. Función de perdida: Error medio cuadrático.</description>
     </item>
     
     <item>
@@ -100,7 +101,7 @@ Teniendo en cuenta los datos involucrados en el fenómeno analizado, la metodolo
       <pubDate>Tue, 06 Oct 2020 08:49:31 +0000</pubDate>
       
       <guid>https://mmapudenar.github.io/docs/plat/nodered/</guid>
-      <description>a </description>
+      <description>La conexión entre el servidor y la base de datos se realiza mediante Node-RED, una herramienta de programación para conectar dispositivos de hardware, APIs y servicios en línea. Se basa en NodeJS, un motor de ejecución asíncrono de Javascript para servidores, el cual permite aprovechar al máximo su modelo controlado por eventos. Es ideal para ejecutarse en hardware de bajo costo y pocos recursos como una Raspberry Pi, así como en la nube.</description>
     </item>
     
     <item>

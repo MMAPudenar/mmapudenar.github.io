@@ -120,7 +120,7 @@
 			<nav class="docs-links" aria-label="Main navigation">
 				<h3>Introducción</h3>
   <ul class="list-unstyled">
-    <li><a class="docs-link" href="https://mmapudenar.github.io/docs/intro/mmap/">Sistema MMAP</a></li>
+    <li><a class="docs-link" href="https://mmapudenar.github.io/docs/intro/mmap/">Resumen</a></li>
     <li><a class="docs-link" href="https://mmapudenar.github.io/docs/intro/equipo/">Equipo de Trabajo</a></li>
     </ul>
   <h3>Modelo de Predicción</h3>
@@ -158,7 +158,6 @@
     <h3>On this page</h3>
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#metodología-propuesta">Metodología propuesta</a></li>
     <li><a href="#radiación-solar">Radiación Solar</a></li>
     <li><a href="#velocidad-del-viento">Velocidad del Viento</a></li>
     <li><a href="#humedad-relativa">Humedad Relativa</a></li>
@@ -172,8 +171,7 @@
 		
 			<h1>Site-adaptation</h1>
 			<p class="lead">Optimización de datos in situ utilizando técnicas de Machine Learning.</p>
-			<h2 id="metodología-propuesta">Metodología propuesta<a href="#metodología-propuesta" class="anchor" aria-hidden="true">#</a> </h2>
-<h2 id="radiación-solar">Radiación Solar<a href="#radiación-solar" class="anchor" aria-hidden="true">#</a> </h2>
+			<h2 id="radiación-solar">Radiación Solar<a href="#radiación-solar" class="anchor" aria-hidden="true">#</a> </h2>
 <p>La radiación solar se constituye por varios componentes. Por regla general, para poder evaluar el recurso solar así como para monitorizar plantas solares, es preciso medir las tres componentes principales: la normal directa (DNI), la horizontal global (GHI), la horizontal difusa (DHI) y, opcionalmente, la normal global (GNI). Parámetros físicos como la temperatura también se encuentran relacionados a la radiación solar.</p>
 <p>Teniendo en cuenta los datos involucrados en el fenómeno analizado, la metodología propuesta para realizar el modelo de site-adaptation de radiación solar global se observa en el diagrama de bloques de la Figura 1. Las entradas son los datos satelitales de Solcast: GHI, DHI, DNI; los datos satelitales de ERA5: Temperatura, Humedad Relativa y presión atmosférica; más la hora. La salida es la radiación solar in situ.</p>
 <p align="center">
@@ -181,60 +179,41 @@
   <br>
     <em><b>Fig. 1.</b> Metodología propuesta para la optimización de datos in situ de Radiación Solar mediante site-adaptation.</em>
 </p>
-<p>El código se encuentra en <a href="https://www.kaggle.com/joeportilla/site-adaptation-de-radiaci-n-solar-global-udenar">kaggle</a></p>
-<table>
-<thead>
-<tr>
-<th>Modelo</th>
-<th>Hiperpárametros</th>
-<th>R$^2$</th>
-<th>RMSE</th>
-<th>MAE</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Redes Neuronales</td>
-<td>3 Capas Ocultas<br>20,20,10 neuronas</td>
-<td>0.86</td>
-<td>83.18</td>
-<td>6.96</td>
-</tr>
-<tr>
-<td>Regresión Lineal</td>
-<td>-</td>
-<td>0.83</td>
-<td>89.24</td>
-<td>31.05</td>
-</tr>
-<tr>
-<td>Random Forest</td>
-<td>500 Estimadores</td>
-<td>0.86</td>
-<td>83.72</td>
-<td>6.17</td>
-</tr>
-</tbody>
-</table>
-<p>En consecuencia, se utiliza Random Forest con 500 estimadores como modelo de aprendizaje automático para corregir toda la base de datos de SOLCAST y ajustarla a las mediciones in situ. Después de aplicar el modelo de regresión, la correlación entre el GHI in situ y satelital aumentó de 0,90 a 0,99. Los resultados se pueden ver en la Fig. 2, por motivos de visualización sólo se muestra una semana de datos.</p>
+<p>Código de programación:</p>
+<ul>
+<li><a href="https://www.kaggle.com/joeportilla/site-adaptation-de-radiaci-n-solar-global-udenar">Site-adaptation de Radiación solar</a>.</li>
+</ul>
+<!-- 
+| Modelo           | Hiperpárametros              | R$^2$ | RMSE | MAE  |
+|------------------|------------------------------|-------|------|------|
+| Redes Neuronales | 3 Capas Ocultas<br>20,20,10 neuronas | 0.86  | 83.18 | 6.96 |
+| Regresión Lineal | -                            | 0.83  | 89.24 | 31.05 |
+| Random Forest    | 500 Estimadores              | 0.86  | 83.72 | 6.17 |
+
+En consecuencia, se utiliza Random Forest con 500 estimadores como modelo de aprendizaje automático para corregir toda la base de datos de SOLCAST y ajustarla a las mediciones in situ. Después de aplicar el modelo de regresión, la correlación entre el GHI in situ y satelital aumentó de 0,90 a 0,99. Los resultados se pueden ver en la Fig. 2, por motivos de visualización sólo se muestra una semana de datos.
+
 <p align="center">
   <img alt="img-name" src="https://i.imgur.com/CPagxYt.png" width="600">
   <br>
     <em><b>Fig. 2.</b> Diagramas de dispersión entre mediciones de radiación in situ y datos de SOLCAST. A la izquierda datos satelitales sin optimizar. A la derecha datos satelitales optimizados utilizando site-adaptation.</em>
 </p>
-<p>La Figura 3 representa los resultados del modelo de site-adaptation para la radiación con random forest</p>
+
+La Figura 3 representa los resultados del modelo de site-adaptation para la radiación con random forest
+
 <p align="center">
   <img alt="img-name" src="https://i.imgur.com/nno9Kip.png" width="600">
   <br>
     <em><b>Fig. 3.</b> Resultados de site-adaptation para la radiación. La línea discontinua representa los datos de IDEAM, la línea punteada representa los datos de SOLCAST y la línea sólida representa la base de datos mejorada.
 .</em>
 </p>
-<p>En la Figura 4 se observa la comparación de datos en dos periodos de tiempo semanales entre la radiación in situ y los valores optimizados.</p>
+
+En la Figura 4 se observa la comparación de datos en dos periodos de tiempo semanales entre la radiación in situ y los valores optimizados. 
+
 <p align="center">
   <img alt="img-name" src="https://i.imgur.com/h8yJBRO.png" width="700">
   <br>
     <em><b>Fig. 4.</b> GHI in situ y optimizado en periodos semanales. La línea continua es el valor in situ y la línea discontinua representa el valor optimizado obtenido.</em>
-</p>
+</p> -->
 <h2 id="velocidad-del-viento">Velocidad del Viento<a href="#velocidad-del-viento" class="anchor" aria-hidden="true">#</a> </h2>
 <p>La modelización de la energía eólica es un reto debido a muchos factores de incertidumbre y a otras fluctuaciones aleatorias derivadas de mediciones inexactas que afectan a la calidad de los datos de observación. Además de los valores históricos de velocidad del viento, algunas variables relacionadas son la temperatura, nubosidad, altitud y la radiación.</p>
 <p>En la etapa anterior se obtienen los datos de radiación solar global optimizados y adaptados al lugar, como entrada al modelo se utilizan estos y no los datos satelitales crudos.</p>
@@ -242,124 +221,85 @@
 <p align="center">
   <img alt="img-name" src="https://i.imgur.com/gIBni75.png" width="500">
   <br>
-    <em><b>Fig. 5.</b> Metodología propuesta para la optimización de datos in situ de Velocidad del Viento mediante site-adaptation .</em>
+    <em><b>Fig. 2.</b> Metodología propuesta para la optimización de datos in situ de Velocidad del Viento mediante site-adaptation .</em>
 </p>
-<p>El código se encuentra en <a href="https://www.kaggle.com/joeportilla/site-adaptation-de-radiaci-n-solar-global-udenar">kaggle</a></p>
-<table>
-<thead>
-<tr>
-<th>Modelo</th>
-<th>Hiperpárametros</th>
-<th>R$^2$</th>
-<th>RMSE</th>
-<th>MAE</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Redes Neuronales</td>
-<td>2 Capas Ocultas<br>30,20 neuronas</td>
-<td>0.72</td>
-<td>0.89</td>
-<td>0.55</td>
-</tr>
-<tr>
-<td>Regresión Lineal</td>
-<td>-</td>
-<td>0.71</td>
-<td>0.91</td>
-<td>0.60</td>
-</tr>
-<tr>
-<td>Random Forest</td>
-<td>500 Estimadores</td>
-<td>0.72</td>
-<td>0.89</td>
-<td>0.55</td>
-</tr>
-</tbody>
-</table>
-<p>En consecuencia, se utiliza &ndash; como modelo de aprendizaje automático para corregir toda la base de datos de NSRDB y ajustarla a las mediciones in situ. Después de aplicar el modelo de regresión, la correlación entre la Velocidad del viento in situ y satelital aumentó de 0,78 a 0,98. Los resultados se pueden ver en la Fig. 6, por motivos de visualización sólo se muestra una semana de datos.</p>
+<p>Código de programación:</p>
+<ul>
+<li><a href="https://www.kaggle.com/joeportilla/site-adaptation-de-velocidad-del-viento-udenar">Site-adaptation de Velocidad del viento</a>.</li>
+</ul>
+<!-- 
+| Modelo           | Hiperpárametros              | R$^2$ | RMSE | MAE  |
+|------------------|------------------------------|-------|------|------|
+| Redes Neuronales | 2 Capas Ocultas<br>30,20 neuronas | 0.72  | 0.89 | 0.55 |
+| Regresión Lineal | -                            | 0.71  | 0.91 | 0.60 |
+| Random Forest    | 500 Estimadores              | 0.72  | 0.89 | 0.55 |
+
+En consecuencia, se utiliza -- como modelo de aprendizaje automático para corregir toda la base de datos de NSRDB y ajustarla a las mediciones in situ. Después de aplicar el modelo de regresión, la correlación entre la Velocidad del viento in situ y satelital aumentó de 0,78 a 0,98. Los resultados se pueden ver en la Fig. 6, por motivos de visualización sólo se muestra una semana de datos.
+
 <p align="center">
   <img alt="img-name" src="https://i.imgur.com/DCK8rkn.png" width="600">
   <br>
     <em><b>Fig. 6.</b> Diagramas de dispersión entre mediciones de velocidad del viento in situ y datos de NSRDB. A la izquierda datos satelitales sin optimizar. A la derecha datos satelitales optimizados utilizando site-adaptation.</em>
 </p>
-<p>La Figura 7 representa los resultados del modelo de site-adaptation para la velocidad del viento con random forest</p>
+
+La Figura 7 representa los resultados del modelo de site-adaptation para la velocidad del viento con random forest
+
 <p align="center">
   <img alt="img-name" src="https://i.imgur.com/sPOC6zu.png" width="600">
   <br>
     <em><b>Fig. 7.</b> Resultados de site-adaptation para la velocidad del viento. La línea discontinua representa los datos de IDEAM, la línea punteada representa los datos de NSRDB y la línea sólida representa la base de datos mejorada.
 .</em>
 </p>
-<p>En la Figura 8 se observa la comparación de datos en dos periodos de tiempo semanales entre la velocidad del viento in situ y los valores optimizados.</p>
+
+En la Figura 8 se observa la comparación de datos en dos periodos de tiempo semanales entre la velocidad del viento in situ y los valores optimizados. 
+
 <p align="center">
   <img alt="img-name" src="https://i.imgur.com/c5RcvCn.png" width="700">
   <br>
     <em><b>Fig. 8.</b> Velocidad del viento in situ y optimizado en periodos semanales. La línea continua es el valor in situ y la línea discontinua representa el valor optimizado obtenido.</em>
-</p>
+</p> -->
 <h2 id="humedad-relativa">Humedad Relativa<a href="#humedad-relativa" class="anchor" aria-hidden="true">#</a> </h2>
 <p>La humedad es la concentración de vapor de agua presente en el aire. Indica la probabilidad de que haya precipitaciones, rocío o niebla. La humedad depende de la temperatura y la presión del sistema de interés y un parámetro relacionado es el punto de rocío.</p>
 <p>Para realizar el modelo de site-adaptation de humedad relativa se propone la metodología del diagrama de bloques de la Figura 9. Las entradas son los datos satelitales de ERA5: Temperatura, Humedad Relativa, punto de rocío y presión atmosférica; los datos optimizados de radiación y velocidad del viento obtenidos en etapas anteriores; más la hora. La salida es la humedad relativa in situ.</p>
 <p align="center">
   <img alt="img-name" src="https://i.imgur.com/hcF0bxz.png" width="500">
   <br>
-    <em><b>Fig. 9.</b> Metodología propuesta para la optimización de datos in situ de Humedad Relativa mediante site-adaptation .</em>
+    <em><b>Fig. 3.</b> Metodología propuesta para la optimización de datos in situ de Humedad Relativa mediante site-adaptation .</em>
 </p>
-<p>El código se encuentra en <a href="https://www.kaggle.com/joeportilla/site-adaptation-de-radiaci-n-solar-global-udenar">kaggle</a></p>
-<table>
-<thead>
-<tr>
-<th>Modelo</th>
-<th>Hiperpárametros</th>
-<th>R$^2$</th>
-<th>RMSE</th>
-<th>MAE</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Redes Neuronales</td>
-<td>3 Capas Ocultas<br>20,20,10 neuronas</td>
-<td>0.72</td>
-<td>6.57</td>
-<td>3.97</td>
-</tr>
-<tr>
-<td>Regresión Lineal</td>
-<td>-</td>
-<td>0.68</td>
-<td>7.10</td>
-<td>4.34</td>
-</tr>
-<tr>
-<td>Random Forest</td>
-<td>750 Estimadores</td>
-<td>0.71</td>
-<td>6.69</td>
-<td>4.02</td>
-</tr>
-</tbody>
-</table>
-<p>En consecuencia, se utiliza &ndash; como modelo de aprendizaje automático para corregir toda la base de datos de ERA5 y ajustarla a las mediciones in situ. Después de aplicar el modelo de regresión, la correlación entre el Humedad Relativa in situ y satelital aumentó de 0,78 a 0,85. Los resultados se pueden ver en la Fig. 10, por motivos de visualización sólo se muestra una semana de datos.</p>
+<p>Código de programación:</p>
+<ul>
+<li><a href="https://www.kaggle.com/joeportilla/site-adaptation-de-humedad-relativa-udenar">Site-adaptation de Humedad Relativa</a>.</li>
+</ul>
+<!-- | Modelo           | Hiperpárametros              | R$^2$ | RMSE | MAE  |
+|------------------|------------------------------|-------|------|------|
+| Redes Neuronales | 3 Capas Ocultas<br>20,20,10 neuronas | 0.72  | 6.57 | 3.97 |
+| Regresión Lineal | -                            | 0.68  | 7.10 | 4.34 |
+| Random Forest    | 750 Estimadores              | 0.71  | 6.69 | 4.02 |
+
+En consecuencia, se utiliza -- como modelo de aprendizaje automático para corregir toda la base de datos de ERA5 y ajustarla a las mediciones in situ. Después de aplicar el modelo de regresión, la correlación entre el Humedad Relativa in situ y satelital aumentó de 0,78 a 0,85. Los resultados se pueden ver en la Fig. 10, por motivos de visualización sólo se muestra una semana de datos.
+
 <p align="center">
   <img alt="img-name" src="https://i.imgur.com/5dV0zWh.png" width="600">
   <br>
     <em><b>Fig. 10.</b> Diagramas de dispersión entre mediciones de humedad relativa in situ y datos de ERA5. A la izquierda datos satelitales sin optimizar. A la derecha datos satelitales optimizados utilizando site-adaptation.</em>
 </p>
-<p>La Figura 11 representa los resultados del modelo de site-adaptation para la humedad relativa con random forest</p>
+
+La Figura 11 representa los resultados del modelo de site-adaptation para la humedad relativa con random forest
+
 <p align="center">
   <img alt="img-name" src="https://i.imgur.com/NwDEm8l.png" width="600">
   <br>
     <em><b>Fig. 11.</b> Resultados de site-adaptation para la humedad relativa. La línea discontinua representa los datos de IDEAM, la línea punteada representa los datos de ERA5 y la línea sólida representa la base de datos mejorada.
 .</em>
 </p>
-<p>En la Figura 12 se observa la comparación de datos en dos periodos de tiempo semanales entre la humedad relativa in situ y los valores optimizados.</p>
+
+En la Figura 12 se observa la comparación de datos en dos periodos de tiempo semanales entre la humedad relativa in situ y los valores optimizados. 
+
 <p align="center">
   <img alt="img-name" src="https://i.imgur.com/RCECVN6.png" width="700">
   <br>
     <em><b>Fig. 12.</b> Humedad Relativa in situ y optimizado en periodos semanales. La línea continua es el valor in situ y la línea discontinua representa el valor optimizado obtenido.</em>
-</p>
+</p> -->
 <h2 id="temperatura">Temperatura<a href="#temperatura" class="anchor" aria-hidden="true">#</a> </h2>
 <p>La temperatura se ha convertido en un importante campo de aplicación de las técnicas de Machine Learning, debido a las dificultades para lograr una alta precisión en el desarrollo de modelos relacionados. Estas secuencias temporales tienen una considerable variabilidad espacial, temporal y estacional. En particular, se ha demostrado que la volatilidad de las series temporales de temperatura obedece a un comportamiento no lineal.</p>
 <p>Las características de entrada más utilizadas en este campo incluyen los valores anteriores de temperatura, así como las mediciones de humedad relativa, radiación solar, lluvia y velocidad del viento.</p>
@@ -367,62 +307,45 @@
 <p align="center">
   <img alt="img-name" src="https://i.imgur.com/F3HSIoW.png" width="500">
   <br>
-    <em><b>Fig. 13.</b> Metodología propuesta para la optimización de datos in situ de Temperatura mediante site-adaptation .</em>
+    <em><b>Fig. 4.</b> Metodología propuesta para la optimización de datos in situ de Temperatura mediante site-adaptation .</em>
 </p>
-<p>El código se encuentra en <a href="https://www.kaggle.com/joeportilla/site-adaptation-de-radiaci-n-solar-global-udenar">kaggle</a></p>
-<table>
-<thead>
-<tr>
-<th>Modelo</th>
-<th>Hiperpárametros</th>
-<th>R$^2$</th>
-<th>RMSE</th>
-<th>MAE</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Redes Neuronales</td>
-<td>1 Capa Oculta<br>10 neuronas</td>
-<td>0.XX</td>
-<td>0.XX</td>
-<td>0.XX</td>
-</tr>
-<tr>
-<td>Regresión Lineal</td>
-<td>-</td>
-<td>0.XX</td>
-<td>0.XX</td>
-<td>0.XX</td>
-</tr>
-<tr>
-<td>Random Forest</td>
-<td>500 Estimadores</td>
-<td>0.XX</td>
-<td>0.XX</td>
-<td>0.XX</td>
-</tr>
-</tbody>
-</table>
-<p>En consecuencia, se utiliza &ndash; como modelo de aprendizaje automático para corregir toda la base de datos de ERA5 y ajustarla a las mediciones in situ. Después de aplicar el modelo de regresión, la correlación entre la Temperatura in situ y satelital aumentó de 0,86 a 0,98. Los resultados se pueden ver en la Fig. 14, por motivos de visualización sólo se muestra una semana de datos.</p>
+<p>Código de programación:</p>
+<ul>
+<li><a href="https://www.kaggle.com/joeportilla/site-adaptation-de-temperatura-udenar">Site-adaptation de Temperatura</a>.</li>
+</ul>
+<!-- 
+| Modelo           | Hiperpárametros              | R$^2$ | RMSE | MAE  |
+|------------------|------------------------------|-------|------|------|
+| Redes Neuronales | 1 Capa Oculta<br>10 neuronas | 0.XX  | 0.XX | 0.XX |
+| Regresión Lineal | -                            | 0.XX  | 0.XX | 0.XX |
+| Random Forest    | 500 Estimadores              | 0.XX  | 0.XX | 0.XX |
+
+En consecuencia, se utiliza -- como modelo de aprendizaje automático para corregir toda la base de datos de ERA5 y ajustarla a las mediciones in situ. Después de aplicar el modelo de regresión, la correlación entre la Temperatura in situ y satelital aumentó de 0,86 a 0,98. Los resultados se pueden ver en la Fig. 14, por motivos de visualización sólo se muestra una semana de datos.
+
 <p align="center">
   <img alt="img-name" src="https://i.imgur.com/LmPovLp.png" width="600">
   <br>
     <em><b>Fig. 14.</b> Diagramas de dispersión entre mediciones de temperatura in situ y datos de ERA5. A la izquierda datos satelitales sin optimizar. A la derecha datos satelitales optimizados utilizando site-adaptation.</em>
 </p>
-<p>La Figura 15 representa los resultados del modelo de site-adaptation para la temperatura con random forest</p>
+
+La Figura 15 representa los resultados del modelo de site-adaptation para la temperatura con random forest
+
 <p align="center">
   <img alt="img-name" src="https://i.imgur.com/DZyzGWf.png" width="600">
   <br>
     <em><b>Fig. 15.</b> Resultados de site-adaptation para la temperatura. La línea discontinua representa los datos de IDEAM, la línea punteada representa los datos de ERA5 y la línea sólida representa la base de datos mejorada.
 .</em>
 </p>
-<p>En la Figura 16 se observa la comparación de datos en dos periodos de tiempo semanales entre la temperatura in situ y los valores optimizados.</p>
+
+En la Figura 16 se observa la comparación de datos en dos periodos de tiempo semanales entre la temperatura in situ y los valores optimizados. 
+
 <p align="center">
   <img alt="img-name" src="https://i.imgur.com/8oXJfPb.png" width="700">
   <br>
     <em><b>Fig. 16.</b> Temperatura in situ y optimizado en periodos semanales. La línea continua es el valor in situ y la línea discontinua representa el valor optimizado obtenido.</em>
-</p>
+</p> --><blockquote>
+</blockquote>
+
 			<div class="docs-navigation d-flex justify-content-between">
 	
 	<a href="https://mmapudenar.github.io/docs/modelo/correlacion/">
@@ -469,7 +392,7 @@
   <script src="https://mmapudenar.github.io/js/vendor/katex/dist/katex.min.a16c5ca92b3cba474a697a3146ca2ed1486305bf2f452dc16a5c8701fcc524d72779ba521ef7f61212fc43a2eedb2a94598e948b0c7f2a510f6ac88e7edafdd0.js" integrity="sha512-oWxcqSs8ukdKaXoxRsou0UhjBb8vRS3BalyHAfzFJNcnebpSHvf2EhL8Q6Lu2yqUWY6Uiwx/KlEPasiOftr90A==" crossorigin="anonymous" defer></script>
     <script src="https://mmapudenar.github.io/js/vendor/katex/dist/contrib/auto-render.min.b367aaf20f22663f79cc66de5558d99f3392981b198f21229e9f6acedb41defe9d682a88b1a1eefddf271fb7260bc5b58c55c0a24779e5358b3c51392dd34d56.js" integrity="sha512-s2eq8g8iZj95zGbeVVjZnzOSmBsZjyEinp9qzttB3v6daCqIsaHu/d8nH7cmC8W1jFXAokd55TWLPFE5LdNNVg==" crossorigin="anonymous" defer></script>
   <script src="https://mmapudenar.github.io/main.min.7ebe89441904dda7661149e63fbe43501464a92ff46162cca013d200684516a1deb1dbc83f0780f78a4ab78f74be173e33f174a8518d1eb2f692b09564723789.js" integrity="sha512-fr6JRBkE3admEUnmP75DUBRkqS/0YWLMoBPSAGhFFqHesdvIPweA94pKt490vhc&#43;M/F0qFGNHrL2krCVZHI3iQ==" crossorigin="anonymous" defer></script>
-  <script src="https://mmapudenar.github.io/index.min.93359410660700eb7f12c6d828f4e16b620c16a277e3233d108b0e095996b09cd4c61bb7b17b9b2eb41d52788acc91f0f8c446670ca4b4168b8a9c5705b18c1d.js" integrity="sha512-kzWUEGYHAOt/EsbYKPTha2IMFqJ34yM9EIsOCVmWsJzUxhu3sXubLrQdUniKzJHw&#43;MRGZwyktBaLipxXBbGMHQ==" crossorigin="anonymous" defer></script>
+  <script src="https://mmapudenar.github.io/index.min.096cfa5942f4635f6efa32487cbfcc6dbf4646a5779df7c170d426ed5049137e7bfaa47b09d980bc289e9ed7fefc7b2cae6eb040da78d337218c5751e4229b95.js" integrity="sha512-CWz6WUL0Y19u&#43;jJIfL/Mbb9GRqV3nffBcNQm7VBJE357&#43;qR7CdmAvCientf&#43;/Hssrm6wQNp40zchjFdR5CKblQ==" crossorigin="anonymous" defer></script>
   
   </body>
 </html>
