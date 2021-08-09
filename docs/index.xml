@@ -86,32 +86,33 @@ Teniendo en cuenta los datos involucrados en el fenómeno analizado, la metodolo
     </item>
     
     <item>
-      <title>Contenido de Sección Plataforma Web</title>
-      <link>https://mmapudenar.github.io/docs/plat/indice/</link>
+      <title>Contenido de sección E.M.A.</title>
+      <link>https://mmapudenar.github.io/docs/ema/indice/</link>
       <pubDate>Tue, 06 Oct 2020 08:49:31 +0000</pubDate>
       
-      <guid>https://mmapudenar.github.io/docs/plat/indice/</guid>
-      <description>En esta sección se encuentran la documentación y resultados de
- Distribución de Datos Almacenamiento de datos Visualización de Datos Diagrama de Funcionamiento de la Plataforma  </description>
+      <guid>https://mmapudenar.github.io/docs/ema/indice/</guid>
+      <description>En esta sección se encuentran la documentación de
+ Hardware  Módulos de Adquisición  Sensor de Radiación Sensor de Temperatura y Humedad Sensor de Velocidad y Dirección del Viento   Módulo de Procesamiento  Microcontrolador Código de Programación     Dimensionamiento Eléctrico Circuito Electrónico Estructura  </description>
     </item>
     
     <item>
-      <title>Distribución de Datos</title>
-      <link>https://mmapudenar.github.io/docs/plat/nodered/</link>
+      <title>Hardware</title>
+      <link>https://mmapudenar.github.io/docs/ema/hardware/</link>
       <pubDate>Tue, 06 Oct 2020 08:49:31 +0000</pubDate>
       
-      <guid>https://mmapudenar.github.io/docs/plat/nodered/</guid>
-      <description>La conexión entre el servidor y la base de datos se realiza mediante Node-RED, una herramienta de programación para conectar dispositivos de hardware, APIs y servicios en línea. Se basa en NodeJS, un motor de ejecución asíncrono de Javascript para servidores, el cual permite aprovechar al máximo su modelo controlado por eventos. Es ideal para ejecutarse en hardware de bajo costo y pocos recursos como una Raspberry Pi, así como en la nube.</description>
+      <guid>https://mmapudenar.github.io/docs/ema/hardware/</guid>
+      <description>Si bien es imposible generalizar una arquitectura de hardware para los desarrollos IoT, ya que cada uno tiene sus propios requerimientos, todos los dispositivos interconectados comparten, sin importar el tipo de aplicación, los bloques de construcción básicos de la siguiente Figura
+Diagrama de Bloques de Hardware</description>
     </item>
     
     <item>
-      <title>Almacenamiento de Datos</title>
-      <link>https://mmapudenar.github.io/docs/plat/influx/</link>
+      <title>Sensor de Radiación Solar</title>
+      <link>https://mmapudenar.github.io/docs/ema/piranometro/</link>
       <pubDate>Tue, 06 Oct 2020 08:49:31 +0000</pubDate>
       
-      <guid>https://mmapudenar.github.io/docs/plat/influx/</guid>
-      <description>Los datos meteorológicos son un conjunto de observaciones obtenidas mediante mediciones periódicas a lo largo del tiempo, teniendo esto en cuenta la mejor opción para el almacenamiento de la información es una base de datos de series de tiempo (Time Series Data Base, TSDB), ya que son sistemas de software que están optimizados para manejar datos y matrices de números indexados por tiempo [].
-InfluxDB InfluxDB es un sistema de gestión de bases de datos de series temporales, de código abierto y gratuito que se encarga del almacenamiento, indexación y consulta de información, especializado en métricas de servidores y monitoreo de dispositivos IoT [].</description>
+      <guid>https://mmapudenar.github.io/docs/ema/piranometro/</guid>
+      <description>APOGEE SP-110 Es un sensor analógico auto alimentado capaz de medir la radiación global solar total: una medida de la tasa de energía solar total entrante (tanto directa como difusa) en un plano horizontal en la superficie de la Tierra. Aproximadamente el 80% del total de la radiación de onda corta está dentro de su rango de medición.
+Fig. 1. Piranómetro Apogee SP-110Se utiliza en una amplia variedad de clima.</description>
     </item>
     
   </channel>
