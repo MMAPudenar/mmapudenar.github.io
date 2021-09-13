@@ -139,7 +139,7 @@
     <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/sht/">Sensor de Temperatura y Humedad</a></li>
     <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/anemometro/">Sensor de Dirección y Velocidad del Viento</a></li>
     <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/micro/">Microcontrolador</a></li>
-    <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/code/">Código de Programación</a></li>
+    <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/code/">Código de Programación E.M.A.</a></li>
     <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/dim/">Dimensionamiento Eléctrico</a></li>
     <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/circuito/">Circuito Electrónico</a></li>
     <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/estructura/">Estructura</a></li>
@@ -235,6 +235,8 @@
 <p align="center">
   <script src="https://embed.github.com/view/3d/MMAPudenar/SoportesEMA/main/Soporte%20Piranometro.stl?height=300&width=500"></script>
   <br>
+  <img alt="img-name" src="https://i.imgur.com/Ortx615.jpg" width="400">
+  <br>  
   <em><b>Fig. 3.</b> Soporte para piranómetro.</em>
 </p>
 <h3 id="conexión">Conexión<a href="#conexión" class="anchor" aria-hidden="true">#</a> </h3>
@@ -245,9 +247,8 @@
     <em><b>Fig. 4.</b> Pines de salida del Piranómetro</em>
 </p>
 <h3 id="acondicionamiento-de-señal">Acondicionamiento de señal<a href="#acondicionamiento-de-señal" class="anchor" aria-hidden="true">#</a> </h3>
-<p>Debido a que el sensor presenta una salida de voltaje muy pequeña del orden de los milivoltios, se requiere un etapa de amplificación para que el microcontrolador pueda leer esta tensión de forma adecuada.</p>
-<p>En este caso el rango de medición de entrada para cubrir la radiación total de onda corta procedente del sol va de 0 a 250 mV aproximadamente. Es raro que la radiación solar sea superior a 250 mV, pero puede ocurrir cerca del mediodía solar cuando las nubes finas aumentan la radiación descendente. Entonces se sobredimensiona 20% el valor y se supone 300 mV como el voltaje máximo de salida del sensor.</p>
-<p>Para amplificar este tipo de señales de baja potencia se utilizan amplificadores de instrumentación, como el AD623, un amplificador de uso general que ofrece una excelente precisión ideal para este tipo de aplicaciones. El circuito de entrada de retroalimentación de corriente proporciona un amplio ancho de banda incluso con alta ganancia, la cual se establece con una resistencia externa <sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>. Las especificaciones del AD623 son</p>
+<p>Debido a que el sensor presenta una salida de voltaje muy pequeña del orden de los milivoltios, se requiere un etapa de amplificación para que el microcontrolador pueda leer esta tensión de forma adecuada. En este caso el rango de medición de entrada para cubrir la radiación total de onda corta procedente del sol va de 0 a 250 mV aproximadamente. Es raro que la radiación solar sea superior a 250 mV, pero puede ocurrir cerca del mediodía solar cuando las nubes finas aumentan la radiación descendente.</p>
+<p>Para amplificar este tipo de señales de baja potencia se utilizan generalmente amplificadores de instrumentación analogicos en circuitos integrados, sin embargo, actualmente también es posible encontrar modulos digitales que ya integran amplificadores de este tipo en su circuito interno, brindando gran precisión y calidad de conversión. El modulo ADS1015 es un convertidor ADC de 12 bits de resolución, que incorpora un amplificador de ganancia programable (PGA) y que además es capaz de medir señales de voltaje en modo diferencial <sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>, como la enviada por el piranometro utilizado. Las especificaciones tecnicas del convertidor se dan en la siguiente tabla.</p>
 <table>
 <thead>
 <tr>
@@ -258,15 +259,15 @@
 <tbody>
 <tr>
 <td>Voltaje de operación</td>
-<td>±2.5V ∼ ±6V</td>
+<td>2V ∼ 5.5V</td>
 </tr>
 <tr>
-<td>Corriente de Entrada</td>
-<td>50$\mu$A</td>
+<td>Corriente de Operación</td>
+<td>150$\mu$A</td>
 </tr>
 <tr>
-<td>Ancho de Banda</td>
-<td>800 KHz</td>
+<td>Interfaz de Comunicación</td>
+<td>Protocolo i2c</td>
 </tr>
 <tr>
 <td>Rango de Operación</td>
@@ -274,23 +275,37 @@
 </tr>
 </tbody>
 </table>
-<p>La ganancia del amplificador es dada por</p>
-<p>$G=1+\frac{100K}{R_G},$</p>
-<p>donde $G$ es la ganancia y $R_G$ la resistencia de ajuste de ganancia. El microcontrolador ESP32 tiene un voltaje máximo de entrada en los pines ADC de $3.3V$, para evitar dañar el microcontrolador con un voltaje mayor al permitido se escoge una ganancia de $G=7$, por lo que se requiere una resistencia de</p>
-<p>$R_G=\frac{100K}{G-1}=1670\Omega \approx 18K\Omega$</p>
-<h4 id="alimentación-del-amplificador-operacional">Alimentación del amplificador operacional<a href="#alimentación-del-amplificador-operacional" class="anchor" aria-hidden="true">#</a> </h4>
-<p>Para lograr un correcto funcionamiento de la etapa de acondicionamiento se debe alimentar el amplificador utilizando una fuente de voltaje dual. Debido a que todo el sistema electrónico se alimenta con una fuente simple de $5V$, se obtiene la referencia de voltaje negativa a partir de una salida PWM del ESP32 implementando un circuito denominado bomba de carga (<em>Charge Pump</em>). Este circuito sencillo compuesto de diodos y capacitores, se utiliza habitualmente en electrónica de baja potencia para subir y bajar los voltajes de las distintas partes del circuito, minimizando el consumo de energía al controlar los voltajes de alimentación. Se emplea un circuito Charge Pump tipo inversor para lograr una tensión de $-2.5V$ que funciona como la alimentación negativa del amplificador operacional. En la Figura 5 se presenta la etapa de amplificación propuesta.</p>
+<p>Para definir la amplificación del ADC se sobredimensiona 20% el valor de la radiación máxima que obtiene el sensor, y se supone 300 mV como el voltaje máximo de salida. Por lo que mediante programación se define una PGA = 8 en el ADC, en consecuencia, será capaz de medir señales de voltaje de +/- 512mV, con una resolución de 250$\mu$V <sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>.</p>
+<!-- Para amplificar este tipo de señales de baja potencia se utilizan amplificadores de instrumentación, como el AD623, un amplificador de uso general que ofrece una excelente precisión ideal para este tipo de aplicaciones. El circuito de entrada de retroalimentación de corriente proporciona un amplio ancho de banda incluso con alta ganancia, la cual se establece con una resistencia externa [^fn3]. Las especificaciones del AD623 son
+
+| Parámetro            | Valor                     |
+|----------------------|---------------------------|
+| Voltaje de operación | ±2.5V ∼ ±6V               |
+| Corriente de Entrada | 50$\mu$A                  |
+| Ancho de Banda       | 800 KHz                   |
+| Rango de Operación   | Temperatura: [-40, 85] °C |
+
+La ganancia del amplificador es dada por
+
+$G=1+\frac{100K}{R_G},$
+
+donde $G$ es la ganancia y $R_G$ la resistencia de ajuste de ganancia. El microcontrolador ESP32 tiene un voltaje máximo de entrada en los pines ADC de $3.3V$, para evitar dañar el microcontrolador con un voltaje mayor al permitido se escoge una ganancia de $G=7$, por lo que se requiere una resistencia de
+
+$R_G=\frac{100K}{G-1}=1670\Omega \approx 18K\Omega$
+#### Alimentación del amplificador operacional
+Para lograr un correcto funcionamiento de la etapa de acondicionamiento se debe alimentar el amplificador utilizando una fuente de voltaje dual. Debido a que todo el sistema electrónico se alimenta con una fuente simple de $5V$, se obtiene la referencia de voltaje negativa a partir de una salida PWM del ESP32 implementando un circuito denominado bomba de carga (*Charge Pump*). Este circuito sencillo compuesto de diodos y capacitores, se utiliza habitualmente en electrónica de baja potencia para subir y bajar los voltajes de las distintas partes del circuito, minimizando el consumo de energía al controlar los voltajes de alimentación. Se emplea un circuito Charge Pump tipo inversor para lograr una tensión de $-2.5V$ que funciona como la alimentación negativa del amplificador operacional. En la Figura 5 se presenta la etapa de amplificación propuesta.
+
 <p align="center">
   <img alt="img-name" src="https://i.imgur.com/IEFL70o.jpg" width="650">
   <br>
     <em><b>Fig. 5.</b> Etapa de amplificación.</em>
-</p>
+</p> -->
 <h3 id="calculo-de-radiación">Calculo de Radiación<a href="#calculo-de-radiación" class="anchor" aria-hidden="true">#</a> </h3>
 <p>Todos los modelos de piranómetros no amplificados de Apogee tienen un factor de calibración estándar de exactamente: $5\frac{W}{m^2}$ por $mV$.
 Multiplicando este factor de calibración por la señal de $mV$ medida por la salida del sensor se obtiene la radiación de onda corta en unidades de $W/m^2$.</p>
 <h3 id="código-de-programación">Código de Programación<a href="#código-de-programación" class="anchor" aria-hidden="true">#</a> </h3>
-<p>Teniendo en cuenta el Datasheet del piranometro <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> se desarrolla una biblioteca que permite obtener la lectura de la radiación solar.</p>
-<p>La biblioteca esta disponible en <a href="https://github.com/MMAPudenar/SP110">GitHub</a>. Se compone de un archivo de cabecera <code>sp110.hpp</code> y un archivo de implementación <code>sp110.cpp</code> donde se encuentran las operaciones y comandos necesarios para la conversión del valor analógico en un dato de radiación global.</p>
+<p>Teniendo en cuenta el Datasheet del piranometro <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> se desarrolla un codigo que permite obtener la lectura de la radiación solar.</p>
+<p>El codigo esta disponible en <a href="https://github.com/MMAPudenar/SP110">GitHub</a>. Se utiliza la biblioteca ADS1X15 proporcionada por &lsquo;Adafruit&rsquo; <sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>, el fabricante del modulo, donde se encuentran las operaciones y comandos necesarios para la conversión del valor analógico en un dato de voltaje.</p>
 <p>A continuación se presenta un código de ejemplo para la medición con el piranómetro SP-110.</p>
 <script src="https://gist.github.com/JoePortilla/b89892c1462bd63ed5dc71d4f4e4d496.js"></script>
 <h3 id="mantenimiento">Mantenimiento<a href="#mantenimiento" class="anchor" aria-hidden="true">#</a> </h3>
@@ -298,6 +313,8 @@ Multiplicando este factor de calibración por la señal de $mV$ medida por la sa
 <p>La mejor manera de eliminar el polvo o los depósitos orgánicos es utilizando agua o limpiador de ventanas y un paño suave o un hisopo de algodón. Los depósitos de sal deben disolverse con vinagre y eliminarse con un paño suave o un bastoncillo de algodón. No se debe utilizar un material abrasivo o un limpiador en el difusor.</p>
 <p>Aunque los sensores de Apogee son muy estables, la deriva de precisión nominal es normal para todos los sensores de grado de investigación. Para asegurar la máxima precisión, generalmente se recomienda que los sensores se envíen para su recalibración cada dos años, aunque a menudo se puede esperar más tiempo según tolerancias particulares <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>.</p>
 <h2 id="referencias">Referencias<a href="#referencias" class="anchor" aria-hidden="true">#</a> </h2>
+<!-- [^fn3]: [AD623 Datasheet](https://www.analog.com/media/en/technical-documentation/data-sheets/AD623.pdf).
+[^fn4]: [OP Amps everyone](http://web.mit.edu/6.101/www/reference/op_amps_everyone.pdf). -->
 <section class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
@@ -308,7 +325,10 @@ Multiplicando este factor de calibración por la señal de $mV$ medida por la sa
 <p><a href="https://www.apogeeinstruments.com/content/SP-110-manual.pdf">SP-110 Manual</a>&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:3" role="doc-endnote">
-<p><a href="https://www.analog.com/media/en/technical-documentation/data-sheets/AD623.pdf">AD623 Datasheet</a>.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p><a href="https://www.ti.com/lit/ds/symlink/ads1015.pdf">ADS101X Datasheet</a>&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4" role="doc-endnote">
+<p><a href="https://github.com/adafruit/Adafruit_ADS1X15">ADS1X15 Biblioteca</a>&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </section>
@@ -359,7 +379,7 @@ Multiplicando este factor de calibración por la señal de $mV$ medida por la sa
   <script src="https://mmapudenar.github.io/js/vendor/katex/dist/katex.min.a16c5ca92b3cba474a697a3146ca2ed1486305bf2f452dc16a5c8701fcc524d72779ba521ef7f61212fc43a2eedb2a94598e948b0c7f2a510f6ac88e7edafdd0.js" integrity="sha512-oWxcqSs8ukdKaXoxRsou0UhjBb8vRS3BalyHAfzFJNcnebpSHvf2EhL8Q6Lu2yqUWY6Uiwx/KlEPasiOftr90A==" crossorigin="anonymous" defer></script>
     <script src="https://mmapudenar.github.io/js/vendor/katex/dist/contrib/auto-render.min.b367aaf20f22663f79cc66de5558d99f3392981b198f21229e9f6acedb41defe9d682a88b1a1eefddf271fb7260bc5b58c55c0a24779e5358b3c51392dd34d56.js" integrity="sha512-s2eq8g8iZj95zGbeVVjZnzOSmBsZjyEinp9qzttB3v6daCqIsaHu/d8nH7cmC8W1jFXAokd55TWLPFE5LdNNVg==" crossorigin="anonymous" defer></script>
   <script src="https://mmapudenar.github.io/main.min.7ebe89441904dda7661149e63fbe43501464a92ff46162cca013d200684516a1deb1dbc83f0780f78a4ab78f74be173e33f174a8518d1eb2f692b09564723789.js" integrity="sha512-fr6JRBkE3admEUnmP75DUBRkqS/0YWLMoBPSAGhFFqHesdvIPweA94pKt490vhc&#43;M/F0qFGNHrL2krCVZHI3iQ==" crossorigin="anonymous" defer></script>
-  <script src="https://mmapudenar.github.io/index.min.73b0cb4b4373390930b0f8fc88afbaa18b4b58f923bd7fb02e28851a8d0bd85e5589c8d43c16b224e80e0ee1a4096e26fcc27d7e8e417eca76f17f6d17b3708d.js" integrity="sha512-c7DLS0NzOQkwsPj8iK&#43;6oYtLWPkjvX&#43;wLiiFGo0L2F5VicjUPBayJOgODuGkCW4m/MJ9fo5Bfsp28X9tF7NwjQ==" crossorigin="anonymous" defer></script>
+  <script src="https://mmapudenar.github.io/index.min.1b9db3e1424cf1221713b0983b9e510df518d2158e4a1d70f8d6260ce22f034a04e1a95aa54eb26c6cd6f8cc8e3ec2967e738b34d2e4f74c317693129f12a1a8.js" integrity="sha512-G52z4UJM8SIXE7CYO55RDfUY0hWOSh1w&#43;NYmDOIvA0oE4alapU6ybGzW&#43;MyOPsKWfnOLNNLk90wxdpMSnxKhqA==" crossorigin="anonymous" defer></script>
   
   </body>
 </html>
