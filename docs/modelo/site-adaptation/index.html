@@ -134,7 +134,6 @@
   <h3>Estación Meteorológica</h3>
   <ul class="list-unstyled">
     <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/indice/">Contenido de sección E.M.A.</a></li>
-    <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/hardware/">Hardware</a></li>
     <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/piranometro/">Sensor de Radiación Solar</a></li>
     <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/sht/">Sensor de Temperatura y Humedad</a></li>
     <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/anemometro/">Sensor de Dirección y Velocidad del Viento</a></li>
@@ -174,8 +173,8 @@
 			<h1>Site-adaptation</h1>
 			<p class="lead">Optimización de datos in situ utilizando técnicas de Machine Learning.</p>
 			<h2 id="radiación-solar">Radiación Solar<a href="#radiación-solar" class="anchor" aria-hidden="true">#</a> </h2>
-<p>La radiación solar se constituye por varios componentes. Por regla general, para poder evaluar el recurso solar así como para monitorizar plantas solares, es preciso medir las tres componentes principales: la normal directa (DNI), la horizontal global (GHI), la horizontal difusa (DHI) y, opcionalmente, la normal global (GNI). Parámetros físicos como la temperatura también se encuentran relacionados a la radiación solar.</p>
-<p>Teniendo en cuenta los datos involucrados en el fenómeno analizado, la metodología propuesta para realizar el modelo de site-adaptation de radiación solar global se observa en el diagrama de bloques de la Figura 1. Las entradas son los datos satelitales de Solcast: GHI, DHI, DNI; los datos satelitales de ERA5: Temperatura, Humedad Relativa y presión atmosférica; más la hora. La salida es la radiación solar in situ.</p>
+<p>La metodología propuesta para realizar el modelo de site-adaptation de radiación solar global se observa en el diagrama de bloques de la Figura 1.</p>
+<p>Las entradas son los datos satelitales de Solcast: GHI, DHI, DNI; los datos satelitales de ERA5: Temperatura, Humedad Relativa y presión atmosférica; más la hora. La salida es la radiación solar in situ.</p>
 <p align="center">
   <img alt="img-name" src="https://i.imgur.com/MCCExP3.png" width="500">
   <br>
@@ -217,9 +216,8 @@ En la Figura 4 se observa la comparación de datos en dos periodos de tiempo sem
     <em><b>Fig. 4.</b> GHI in situ y optimizado en periodos semanales. La línea continua es el valor in situ y la línea discontinua representa el valor optimizado obtenido.</em>
 </p> -->
 <h2 id="velocidad-del-viento">Velocidad del Viento<a href="#velocidad-del-viento" class="anchor" aria-hidden="true">#</a> </h2>
-<p>La modelización de la energía eólica es un reto debido a muchos factores de incertidumbre y a otras fluctuaciones aleatorias derivadas de mediciones inexactas que afectan a la calidad de los datos de observación. Además de los valores históricos de velocidad del viento, algunas variables relacionadas son la temperatura, nubosidad, altitud y la radiación.</p>
-<p>En la etapa anterior se obtienen los datos de radiación solar global optimizados y adaptados al lugar, como entrada al modelo se utilizan estos y no los datos satelitales crudos.</p>
-<p>La metodología propuesta para realizar el modelo de site-adaptation de la velocidad del viento se observa en el diagrama de bloques de la Figura 5. Las entradas son los datos satelitales de NSRDB: Velocidad del viento; los datos satelitales de ERA5: Temperatura, Humedad Relativa y presión atmosférica; los datos optimizados de Radiación, más la hora. La salida es la velocidad del viento in situ.</p>
+<p>La metodología propuesta para realizar el modelo de site-adaptation de la velocidad del viento se observa en el diagrama de bloques de la Figura 2.</p>
+<p>Las entradas son los datos satelitales de NSRDB: Velocidad del viento; los datos satelitales de ERA5: Temperatura, Humedad Relativa y presión atmosférica; los datos optimizados de Radiación, más la hora. La salida es la velocidad del viento in situ.</p>
 <p align="center">
   <img alt="img-name" src="https://i.imgur.com/gIBni75.png" width="500">
   <br>
@@ -261,8 +259,8 @@ En la Figura 8 se observa la comparación de datos en dos periodos de tiempo sem
     <em><b>Fig. 8.</b> Velocidad del viento in situ y optimizado en periodos semanales. La línea continua es el valor in situ y la línea discontinua representa el valor optimizado obtenido.</em>
 </p> -->
 <h2 id="humedad-relativa">Humedad Relativa<a href="#humedad-relativa" class="anchor" aria-hidden="true">#</a> </h2>
-<p>La humedad es la concentración de vapor de agua presente en el aire. Indica la probabilidad de que haya precipitaciones, rocío o niebla. La humedad depende de la temperatura y la presión del sistema de interés y un parámetro relacionado es el punto de rocío.</p>
-<p>Para realizar el modelo de site-adaptation de humedad relativa se propone la metodología del diagrama de bloques de la Figura 9. Las entradas son los datos satelitales de ERA5: Temperatura, Humedad Relativa, punto de rocío y presión atmosférica; los datos optimizados de radiación y velocidad del viento obtenidos en etapas anteriores; más la hora. La salida es la humedad relativa in situ.</p>
+<p>La metodología propuesta para realizar el modelo de site-adaptation para la Humedad Relativa se observa en el diagrama de bloques de la Figura 4.</p>
+<p>Las entradas son los datos satelitales de ERA5: Temperatura, Humedad Relativa, punto de rocío y presión atmosférica; los datos optimizados de radiación y velocidad del viento obtenidos en etapas anteriores; más la hora. La salida es la humedad relativa in situ.</p>
 <p align="center">
   <img alt="img-name" src="https://i.imgur.com/hcF0bxz.png" width="500">
   <br>
@@ -303,9 +301,8 @@ En la Figura 12 se observa la comparación de datos en dos periodos de tiempo se
     <em><b>Fig. 12.</b> Humedad Relativa in situ y optimizado en periodos semanales. La línea continua es el valor in situ y la línea discontinua representa el valor optimizado obtenido.</em>
 </p> -->
 <h2 id="temperatura">Temperatura<a href="#temperatura" class="anchor" aria-hidden="true">#</a> </h2>
-<p>La temperatura se ha convertido en un importante campo de aplicación de las técnicas de Machine Learning, debido a las dificultades para lograr una alta precisión en el desarrollo de modelos relacionados. Estas secuencias temporales tienen una considerable variabilidad espacial, temporal y estacional. En particular, se ha demostrado que la volatilidad de las series temporales de temperatura obedece a un comportamiento no lineal.</p>
-<p>Las características de entrada más utilizadas en este campo incluyen los valores anteriores de temperatura, así como las mediciones de humedad relativa, radiación solar, lluvia y velocidad del viento.</p>
-<p>La metodología propuesta para realizar el modelo de site-adaptation para la temperatura se observa en el diagrama de bloques de la Figura 13. Las entradas son los datos satelitales de ERA5: temperatura y presión atmosférica; los datos optimizados de: Humedad relativa, velocidad del viento y radiación, obtenidos en etapas anteriores; más la hora. La salida es la temperatura in situ.</p>
+<p>La metodología propuesta para realizar el modelo de site-adaptation para la temperatura se observa en el diagrama de bloques de la Figura 4.</p>
+<p>Las entradas son los datos satelitales de ERA5: temperatura y presión atmosférica; los datos optimizados de: Humedad relativa, velocidad del viento y radiación, obtenidos en etapas anteriores; más la hora. La salida es la temperatura in situ.</p>
 <p align="center">
   <img alt="img-name" src="https://i.imgur.com/F3HSIoW.png" width="500">
   <br>
@@ -394,7 +391,7 @@ En la Figura 16 se observa la comparación de datos en dos periodos de tiempo se
   <script src="https://mmapudenar.github.io/js/vendor/katex/dist/katex.min.a16c5ca92b3cba474a697a3146ca2ed1486305bf2f452dc16a5c8701fcc524d72779ba521ef7f61212fc43a2eedb2a94598e948b0c7f2a510f6ac88e7edafdd0.js" integrity="sha512-oWxcqSs8ukdKaXoxRsou0UhjBb8vRS3BalyHAfzFJNcnebpSHvf2EhL8Q6Lu2yqUWY6Uiwx/KlEPasiOftr90A==" crossorigin="anonymous" defer></script>
     <script src="https://mmapudenar.github.io/js/vendor/katex/dist/contrib/auto-render.min.b367aaf20f22663f79cc66de5558d99f3392981b198f21229e9f6acedb41defe9d682a88b1a1eefddf271fb7260bc5b58c55c0a24779e5358b3c51392dd34d56.js" integrity="sha512-s2eq8g8iZj95zGbeVVjZnzOSmBsZjyEinp9qzttB3v6daCqIsaHu/d8nH7cmC8W1jFXAokd55TWLPFE5LdNNVg==" crossorigin="anonymous" defer></script>
   <script src="https://mmapudenar.github.io/main.min.7ebe89441904dda7661149e63fbe43501464a92ff46162cca013d200684516a1deb1dbc83f0780f78a4ab78f74be173e33f174a8518d1eb2f692b09564723789.js" integrity="sha512-fr6JRBkE3admEUnmP75DUBRkqS/0YWLMoBPSAGhFFqHesdvIPweA94pKt490vhc&#43;M/F0qFGNHrL2krCVZHI3iQ==" crossorigin="anonymous" defer></script>
-  <script src="https://mmapudenar.github.io/index.min.1b9db3e1424cf1221713b0983b9e510df518d2158e4a1d70f8d6260ce22f034a04e1a95aa54eb26c6cd6f8cc8e3ec2967e738b34d2e4f74c317693129f12a1a8.js" integrity="sha512-G52z4UJM8SIXE7CYO55RDfUY0hWOSh1w&#43;NYmDOIvA0oE4alapU6ybGzW&#43;MyOPsKWfnOLNNLk90wxdpMSnxKhqA==" crossorigin="anonymous" defer></script>
+  <script src="https://mmapudenar.github.io/index.min.1f61033eac6ee65978b011341925fb682a960682acaaec633cdf3621a32de5ecf4629b05b938db1d93a345c4e95d65e7fe9f1176b2929eb3b951bf520803c9f2.js" integrity="sha512-H2EDPqxu5ll4sBE0GSX7aCqWBoKsquxjPN82IaMt5ez0YpsFuTjbHZOjRcTpXWXn/p8RdrKSnrO5Ub9SCAPJ8g==" crossorigin="anonymous" defer></script>
   
   </body>
 </html>

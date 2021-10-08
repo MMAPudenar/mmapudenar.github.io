@@ -134,7 +134,6 @@
   <h3>Estación Meteorológica</h3>
   <ul class="list-unstyled">
     <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/indice/">Contenido de sección E.M.A.</a></li>
-    <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/hardware/">Hardware</a></li>
     <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/piranometro/">Sensor de Radiación Solar</a></li>
     <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/sht/">Sensor de Temperatura y Humedad</a></li>
     <li><a class="docs-link" href="https://mmapudenar.github.io/docs/ema/anemometro/">Sensor de Dirección y Velocidad del Viento</a></li>
@@ -160,9 +159,13 @@
     <h3>On this page</h3>
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#influxdb">InfluxDB</a>
+    <li><a href="#elementos-de-una-tsdb">Elementos de una TSDB</a>
       <ul>
-        <li><a href="#elementos-de-una-tsdb">Elementos de una TSDB</a></li>
+        <li><a href="#time">Time</a></li>
+        <li><a href="#tags">Tags</a></li>
+        <li><a href="#measurement">Measurement</a></li>
+        <li><a href="#retention-policy">Retention policy</a></li>
+        <li><a href="#bucket">Bucket</a></li>
       </ul>
     </li>
     <li><a href="#estructura-de-datos-propuesta">Estructura de datos propuesta</a></li>
@@ -176,28 +179,21 @@
 		
 			<h1>Almacenamiento de Datos</h1>
 			<p class="lead">Base de Datos de Series de Tiempo.</p>
-			<p>Los datos meteorológicos son un conjunto de observaciones obtenidas mediante mediciones periódicas a lo largo del tiempo, teniendo esto en cuenta la mejor opción para el almacenamiento de la información es una base de datos de series de tiempo (<em>Time Series Data Base</em>, TSDB), ya que son sistemas de software que están optimizados para manejar datos y matrices de números indexados por tiempo [].</p>
-<h2 id="influxdb">InfluxDB<a href="#influxdb" class="anchor" aria-hidden="true">#</a> </h2>
-<p align="center">
-  <img alt="img-name" src="https://optimalbi.com/wp-content/uploads/2017/08/Influxdb_logo.small_1.png" width="400">
-  <br>
-</p>
-InfluxDB es un sistema de gestión de bases de datos de series temporales, de código abierto y gratuito que se encarga del almacenamiento, indexación y consulta de información, especializado en métricas de servidores y monitoreo de dispositivos IoT []. Al ser capaz de manejar gran cantidad de inserciones y búsquedas se puede obtener información de los diferentes sensores en períodos de tiempo específicos y a partir de éstos realizar análisis en tiempo real.
-<p>InfluxDB integra la herramienta &lsquo;Chronograf&rsquo;, que ayuda a gestionar las bases de datos desde una interfaz gráfica administrativa en lugar de hacerlo mediante comandos por la terminal de la consola. Permite crear o eliminar bases de datos y políticas de retención, ver las consultas que se están ejecutando y evitar que las consultas ineficientes sobrecarguen el sistema, además de poder crear, eliminar y asignar permisos a los usuarios [].</p>
-<h3 id="elementos-de-una-tsdb">Elementos de una TSDB<a href="#elementos-de-una-tsdb" class="anchor" aria-hidden="true">#</a> </h3>
-<h4 id="time">Time<a href="#time" class="anchor" aria-hidden="true">#</a> </h4>
+			<p>Para el almacenamiento, indexación y consulta de información, se hace uso de InfluxDB, un sistema de gestión de bases de datos de series temporales, de código abierto y gratuito, especializado en métricas de servidores y monitoreo de dispositivos IoT. Al ser capaz de manejar gran cantidad de inserciones y búsquedas se puede obtener información de los diferentes sensores en períodos de tiempo específicos y a partir de éstos realizar análisis en tiempo real.</p>
+<p>A continuación se presenta los elementos que componen una base de datos de series de tiempo, y la propuesta de estructura para almacenar los datos de esta investigación.</p>
+<h2 id="elementos-de-una-tsdb">Elementos de una TSDB<a href="#elementos-de-una-tsdb" class="anchor" aria-hidden="true">#</a> </h2>
+<h3 id="time">Time<a href="#time" class="anchor" aria-hidden="true">#</a> </h3>
 <p>Todos los datos en InfluxDB tienen esa columna. el tiempo almacena marcas de tiempo que muestran la fecha y la hora en RFC3339 UTC, asociada con datos particulares.</p>
 <h4 id="fields">Fields<a href="#fields" class="anchor" aria-hidden="true">#</a> </h4>
 <p>Los campos son una pieza necesaria de la estructura de datos de InfluxDB, no se puede tener datos en InfluxDB sin fields. Los Fields están compuestos por <em>field keys</em> y <em>field values</em>. Una Field Key es un string que almacena el metadato del campo, mientras que los Field Values son los datos del campo; pueden ser string, float, int o bool y siempre se asocian a una marca de tiempo.</p>
-<p>En general, los campos no deben contener metadatos comúnmente solicitados en queries (consultas). Debido a que los campos no están indexados las consultas que utilizan Fields como filtros deben escanear todos los valores que coincidan con las otras condiciones de la consulta. Como resultado, no tienen un buen rendimiento respecto a las consultas con tags.</p>
-<h4 id="tags">Tags<a href="#tags" class="anchor" aria-hidden="true">#</a> </h4>
-<p>Las etiquetas registran metadatos y se almacenan como strings. Las etiquetas son opcionales. No es necesario tener etiquetas en la estructura de datos, pero generalmente es una buena idea hacer uso de ellas porque, a diferencia de los campos, las etiquetas están indexadas. Esto significa que las consultas sobre las etiquetas son más rápidas y son ideales para almacenar metadatos de búsqueda común.</p>
-<p>Se componen de <em>Tag Keys</em> y <em>Tag Values</em>. Una Tag Key es un string que almacena el titulo del metadato. Una Tag value es un string que almacena la información del metadato.</p>
-<h4 id="measurement">Measurement<a href="#measurement" class="anchor" aria-hidden="true">#</a> </h4>
+<!-- En general, los campos no deben contener metadatos comúnmente solicitados en queries (consultas). Debido a que los campos no están indexados las consultas que utilizan Fields como filtros deben escanear todos los valores que coincidan con las otras condiciones de la consulta. Como resultado, no tienen un buen rendimiento respecto a las consultas con tags.  -->
+<h3 id="tags">Tags<a href="#tags" class="anchor" aria-hidden="true">#</a> </h3>
+<p>Las etiquetas registran metadatos y se almacenan como strings. Se componen de <em>Tag Keys</em> y <em>Tag Values</em>. Una Tag Key es un string que almacena el titulo del metadato. Una Tag value es un string que almacena la información del metadato. Las etiquetas son opcionales. No es necesario tener etiquetas en la estructura de datos, pero generalmente es una buena idea hacer uso de ellas porque, a diferencia de los campos, las etiquetas están indexadas. Esto significa que las consultas sobre las etiquetas son más rápidas y son ideales para almacenar metadatos de búsqueda común.</p>
+<h3 id="measurement">Measurement<a href="#measurement" class="anchor" aria-hidden="true">#</a> </h3>
 <p>Es un contenedor para los tags, fields y time. El nombre que se le da a &ldquo;measurement&rdquo; es una descripción de la información que esta almacenada en sus campos asociados. Es similar a una tabla en SQL.</p>
-<h4 id="retention-policy">Retention policy<a href="#retention-policy" class="anchor" aria-hidden="true">#</a> </h4>
+<h3 id="retention-policy">Retention policy<a href="#retention-policy" class="anchor" aria-hidden="true">#</a> </h3>
 <p>Una política de retención describe el tiempo que InfluxDB guarda los datos (Duración) y cuántas copias de estos datos se almacenan en el cluster (Replicación).</p>
-<h4 id="bucket">Bucket<a href="#bucket" class="anchor" aria-hidden="true">#</a> </h4>
+<h3 id="bucket">Bucket<a href="#bucket" class="anchor" aria-hidden="true">#</a> </h3>
 <p>Un bucket es el conjunto de un measurement y su respectiva retention policy.</p>
 <h2 id="estructura-de-datos-propuesta">Estructura de datos propuesta<a href="#estructura-de-datos-propuesta" class="anchor" aria-hidden="true">#</a> </h2>
 <p>A partir de los elementos anteriormente descritos se propone una estructura donde los metadatos de búsqueda común sean etiquetas, facilitando y optimizando la consulta. En el caso de un sistema meteorológico la información más destacada es: Variable medida, sensor utilizado, ubicación y municipio donde se encuentra la estación de medición.</p>
@@ -240,7 +236,7 @@ InfluxDB es un sistema de gestión de bases de datos de series temporales, de c�
 </tbody>
 </table>
 <h2 id="descarga-de-datos">Descarga de Datos<a href="#descarga-de-datos" class="anchor" aria-hidden="true">#</a> </h2>
-<p>La descarga de datos en un archivo .csv se puede realizar en cualquier intervalo elegido por el usuario dentro de la misma plataforma.</p>
+<p>La descarga de datos en un archivo .csv se puede realizar en cualquier intervalo elegido por el usuario dentro de la interfaz de InfluxDB. Con el fin de brindar seguridad a la plataforma web y evitar usos malintencionados, para ingresar a la aplicación alojada en <a href="http://influxdb.mmapudenar.me/">influxdb.mmapudenar.me</a> se debe pedir la creación de un usuario y su respectiva contraseña al <a href="https://mmapudenar.github.io/docs/intro/equipo">equipo de trabajo</a> del proyecto.</p>
 
 			<div class="docs-navigation d-flex justify-content-between">
 	
@@ -288,7 +284,7 @@ InfluxDB es un sistema de gestión de bases de datos de series temporales, de c�
   <script src="https://mmapudenar.github.io/js/vendor/katex/dist/katex.min.a16c5ca92b3cba474a697a3146ca2ed1486305bf2f452dc16a5c8701fcc524d72779ba521ef7f61212fc43a2eedb2a94598e948b0c7f2a510f6ac88e7edafdd0.js" integrity="sha512-oWxcqSs8ukdKaXoxRsou0UhjBb8vRS3BalyHAfzFJNcnebpSHvf2EhL8Q6Lu2yqUWY6Uiwx/KlEPasiOftr90A==" crossorigin="anonymous" defer></script>
     <script src="https://mmapudenar.github.io/js/vendor/katex/dist/contrib/auto-render.min.b367aaf20f22663f79cc66de5558d99f3392981b198f21229e9f6acedb41defe9d682a88b1a1eefddf271fb7260bc5b58c55c0a24779e5358b3c51392dd34d56.js" integrity="sha512-s2eq8g8iZj95zGbeVVjZnzOSmBsZjyEinp9qzttB3v6daCqIsaHu/d8nH7cmC8W1jFXAokd55TWLPFE5LdNNVg==" crossorigin="anonymous" defer></script>
   <script src="https://mmapudenar.github.io/main.min.7ebe89441904dda7661149e63fbe43501464a92ff46162cca013d200684516a1deb1dbc83f0780f78a4ab78f74be173e33f174a8518d1eb2f692b09564723789.js" integrity="sha512-fr6JRBkE3admEUnmP75DUBRkqS/0YWLMoBPSAGhFFqHesdvIPweA94pKt490vhc&#43;M/F0qFGNHrL2krCVZHI3iQ==" crossorigin="anonymous" defer></script>
-  <script src="https://mmapudenar.github.io/index.min.1b9db3e1424cf1221713b0983b9e510df518d2158e4a1d70f8d6260ce22f034a04e1a95aa54eb26c6cd6f8cc8e3ec2967e738b34d2e4f74c317693129f12a1a8.js" integrity="sha512-G52z4UJM8SIXE7CYO55RDfUY0hWOSh1w&#43;NYmDOIvA0oE4alapU6ybGzW&#43;MyOPsKWfnOLNNLk90wxdpMSnxKhqA==" crossorigin="anonymous" defer></script>
+  <script src="https://mmapudenar.github.io/index.min.1f61033eac6ee65978b011341925fb682a960682acaaec633cdf3621a32de5ecf4629b05b938db1d93a345c4e95d65e7fe9f1176b2929eb3b951bf520803c9f2.js" integrity="sha512-H2EDPqxu5ll4sBE0GSX7aCqWBoKsquxjPN82IaMt5ez0YpsFuTjbHZOjRcTpXWXn/p8RdrKSnrO5Ub9SCAPJ8g==" crossorigin="anonymous" defer></script>
   
   </body>
 </html>

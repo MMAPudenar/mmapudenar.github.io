@@ -70,8 +70,9 @@ Por otra parte ERA5 tiene una correlación media, acorde a su documentación se 
       <pubDate>Thu, 12 Nov 2020 13:26:54 +0100</pubDate>
       
       <guid>https://mmapudenar.github.io/docs/modelo/site-adaptation/</guid>
-      <description>Radiación Solar La radiación solar se constituye por varios componentes. Por regla general, para poder evaluar el recurso solar así como para monitorizar plantas solares, es preciso medir las tres componentes principales: la normal directa (DNI), la horizontal global (GHI), la horizontal difusa (DHI) y, opcionalmente, la normal global (GNI). Parámetros físicos como la temperatura también se encuentran relacionados a la radiación solar.
-Teniendo en cuenta los datos involucrados en el fenómeno analizado, la metodología propuesta para realizar el modelo de site-adaptation de radiación solar global se observa en el diagrama de bloques de la Figura 1.</description>
+      <description>Radiación Solar La metodología propuesta para realizar el modelo de site-adaptation de radiación solar global se observa en el diagrama de bloques de la Figura 1.
+Las entradas son los datos satelitales de Solcast: GHI, DHI, DNI; los datos satelitales de ERA5: Temperatura, Humedad Relativa y presión atmosférica; más la hora. La salida es la radiación solar in situ.
+Fig. 1. Metodología propuesta para la optimización de datos in situ de Radiación Solar mediante site-adaptation.</description>
     </item>
     
     <item>
@@ -96,16 +97,6 @@ Teniendo en cuenta los datos involucrados en el fenómeno analizado, la metodolo
     </item>
     
     <item>
-      <title>Hardware</title>
-      <link>https://mmapudenar.github.io/docs/ema/hardware/</link>
-      <pubDate>Tue, 06 Oct 2020 08:49:31 +0000</pubDate>
-      
-      <guid>https://mmapudenar.github.io/docs/ema/hardware/</guid>
-      <description>Si bien es imposible generalizar una arquitectura de hardware para los desarrollos IoT, ya que cada uno tiene sus propios requerimientos, todos los dispositivos interconectados comparten, sin importar el tipo de aplicación, los bloques de construcción básicos de la siguiente Figura
-Diagrama de Bloques de Hardware</description>
-    </item>
-    
-    <item>
       <title>Sensor de Radiación Solar</title>
       <link>https://mmapudenar.github.io/docs/ema/piranometro/</link>
       <pubDate>Tue, 06 Oct 2020 08:49:31 +0000</pubDate>
@@ -113,6 +104,16 @@ Diagrama de Bloques de Hardware</description>
       <guid>https://mmapudenar.github.io/docs/ema/piranometro/</guid>
       <description>APOGEE SP-110 Es un sensor analógico auto alimentado capaz de medir la radiación global solar total: una medida de la tasa de energía solar total entrante (tanto directa como difusa) en un plano horizontal en la superficie de la Tierra. Aproximadamente el 80% del total de la radiación de onda corta está dentro de su rango de medición.
 Fig. 1. Piranómetro Apogee SP-110Se utiliza en una amplia variedad de clima.</description>
+    </item>
+    
+    <item>
+      <title>Sensor de Temperatura y Humedad</title>
+      <link>https://mmapudenar.github.io/docs/ema/sht/</link>
+      <pubDate>Tue, 06 Oct 2020 08:49:31 +0000</pubDate>
+      
+      <guid>https://mmapudenar.github.io/docs/ema/sht/</guid>
+      <description>SHT30 El sensor de temperatura y humedad SHT30 adopta la nueva generación de sensores de temperatura y humedad SHT3X de Sensirion, ofrece una alta fiabilidad y estabilidad a largo plazo con un bajo consumo de energía, una respuesta rápida e inmunidad a las interferencias.
+Fig. 1. Sensor SHT30 con carcasa de protección impermeableEl sensor tiene una salida digital calibrada internamente, linealizada y con compensación de temperatura. Consigue una detección precisa y de alta fiabilidad de temperatura y humedad para su monitoreo en el entorno urbano, los edificios inteligentes, la automatización industrial y otras aplicaciones del Internet de las cosas 1.</description>
     </item>
     
   </channel>
